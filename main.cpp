@@ -84,6 +84,11 @@ int main() {
     }
     std::cout << std::endl;
 
+    insertionSort(smallPartial);
+    for(int i = 0; i < smallPartial.size(); i++) {
+        std::cout << smallPartial[i] << " ";
+    }
+
     std::clock_t start;
     double duration;
 
