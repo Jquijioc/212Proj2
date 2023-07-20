@@ -64,6 +64,12 @@ int main() {
     }
     std::cout << std::endl;
 
+    insertionSort(smallReversed);
+    for(int i = 0; i < smallReversed.size(); i++) {
+        std::cout << smallReversed[i] << " ";
+    }
+    std::cout << std::endl;
+
     std::clock_t start;
     double duration;
 
