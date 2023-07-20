@@ -2,6 +2,12 @@
 #include <vector>
 #include <cstdio>
 #include <ctime>
+#include <algorithm>
+#include <random>
+
+bool check (int i,int j) {
+    return (i < j);
+}
 
 void insertionSort(std::vector<int> arr) {
     for (int i = 1; i < algo.size(); i++) {
