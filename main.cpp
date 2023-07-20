@@ -49,6 +49,8 @@ int main() {
     std::vector<int> bigRandom;
     std::vector<int> bigPartial;
 
+    std::vector<int> data = {25,10,5,30,13,7};
+
     std::clock_t start;
     double duration;
 
