@@ -70,6 +70,13 @@ int main() {
     }
     std::cout << std::endl;
 
+    std::random_shuffle(smallRandom.begin(), smallRandom.end());
+    insertionSort(smallRandom);
+    for(int i = 0; i < smallRandom.size(); i++) {
+        std::cout << smallRandom[i] << " ";
+    }
+    std::cout << std::endl;
+
     std::clock_t start;
     double duration;
 
