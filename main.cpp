@@ -51,6 +51,13 @@ int main() {
 
     std::vector<int> data = {25,10,5,30,13,7};
 
+    for(int i = 0; i < data.size(); i++) {
+        smallSorted.push_back(data[i]);
+        smallReversed.push_back(data[data.size() - 1 - i]);
+        smallRandom.push_back(data[i]);
+        smallPartial.push_back(data[i]);
+    }
+
     std::clock_t start;
     double duration;
 
