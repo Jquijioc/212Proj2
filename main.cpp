@@ -77,6 +77,13 @@ int main() {
     }
     std::cout << std::endl;
 
+    int offset = smallPartial.size()/2;
+    std::partial_sort (smallPartial.begin(), smallPartial.begin()+ offset, smallPartial.end(), check);
+    for(int i = 0; i < smallPartial.size(); i++) {
+        std::cout << smallPartial[i] << " ";
+    }
+    std::cout << std::endl;
+
     std::clock_t start;
     double duration;
 
