@@ -58,6 +58,12 @@ int main() {
         smallPartial.push_back(data[i]);
     }
 
+    insertionSort(smallSorted);
+    for(int i = 0; i < smallSorted.size(); i++) {
+        std::cout << smallSorted[i] << " ";
+    }
+    std::cout << std::endl;
+
     std::clock_t start;
     double duration;
 
