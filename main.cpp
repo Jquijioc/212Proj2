@@ -39,6 +39,16 @@ void quickSort(std::vector<int> arr, int minIndex, int maxIndex){
 }
 
 int main() {
+
+    std::vector<int> smallSorted;
+    std::vector<int> smallReversed;
+    std::vector<int> smallRandom;
+    std::vector<int> smallPartial;
+    std::vector<int> bigSorted;
+    std::vector<int> bigReversed;
+    std::vector<int> bigRandom;
+    std::vector<int> bigPartial;
+
     std::clock_t start;
     double duration;
 
