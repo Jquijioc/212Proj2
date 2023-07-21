@@ -21,6 +21,17 @@ void insertionSort(std::vector<int>& arr) {
     }
 }
 
+void printAndInsertionSort(std::string description, std::vector<int>& dataSet) {
+    std::cout << "Current " << description << " List" << std::endl;
+    std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+
+    std::cout << "After Insertion Sort" << std::endl;
+    insertionSort(dataSet);
+    std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << "\n" << std::endl;
+}
+
 
 int partition(std::vector<int> arr, int minIndex, int maxIndex){
     int pivot = arr[maxIndex];
