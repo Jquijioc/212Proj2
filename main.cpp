@@ -68,43 +68,24 @@ int main() {
 
     std::vector<int> data = {25,10,5,30,13,7};
 
+    //pushes user input into 4 arrays
     for(int i = 0; i < data.size(); i++) {
         smallSorted.push_back(data[i]);
         smallReversed.push_back(data[data.size() - 1 - i]);
         smallRandom.push_back(data[i]);
         smallPartial.push_back(data[i]);
     }
-
-    insertionSort(smallSorted);
-    for(int i = 0; i < smallSorted.size(); i++) {
-        std::cout << smallSorted[i] << " ";
-    }
-    std::cout << std::endl;
-
-    insertionSort(smallReversed);
-    for(int i = 0; i < smallReversed.size(); i++) {
-        std::cout << smallReversed[i] << " ";
-    }
-    std::cout << std::endl;
-
+    //shuffles smallRandom
     std::random_shuffle(smallRandom.begin(), smallRandom.end());
-    insertionSort(smallRandom);
-    for(int i = 0; i < smallRandom.size(); i++) {
-        std::cout << smallRandom[i] << " ";
-    }
-    std::cout << std::endl;
-
+    //partially sorts smallPartial
     int offset = smallPartial.size()/2;
-    std::partial_sort (smallPartial.begin(), smallPartial.begin()+ offset, smallPartial.end(), check);
-    for(int i = 0; i < smallPartial.size(); i++) {
-        std::cout << smallPartial[i] << " ";
-    }
-    std::cout << std::endl;
+    std::partial_sort (smallPartial.begin(), smallPartial.begin() + offset, smallPartial.end(), check);
 
-    insertionSort(smallPartial);
-    for(int i = 0; i < smallPartial.size(); i++) {
-        std::cout << smallPartial[i] << " ";
-    }
+
+    printAndInsertionSort("Sorted", smallSorted);
+    printAndInsertionSort("Reversed", smallReversed);
+    printAndInsertionSort("Random", smallRandom);
+    printAndInsertionSort("Partially Sorted", smallPartial);
 
     std::clock_t start;
     double duration;
