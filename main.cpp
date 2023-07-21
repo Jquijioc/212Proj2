@@ -21,17 +21,6 @@ void insertionSort(std::vector<int>& arr) {
     }
 }
 
-void printAndInsertionSort(std::string description, std::vector<int>& dataSet) {
-    std::cout << "Current " << description << " List" << std::endl;
-    std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-
-    std::cout << "After Insertion Sort" << std::endl;
-    insertionSort(dataSet);
-    std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << "\n" << std::endl;
-}
-
 
 int partition(std::vector<int> arr, int minIndex, int maxIndex){
     int pivot = arr[maxIndex];
@@ -56,36 +45,104 @@ void quickSort(std::vector<int> arr, int minIndex, int maxIndex){
 }
 
 int main() {
+    const int dataSize = 10000;
+// data sets:
+// Sorted Integer Set
+//small
+    int smallSorted[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+//big
+    int bigSorted[dataSize];
+    for (int i = 0; i < dataSize; ++i) {
+        bigSorted[i] = i + 1;
+    }
 
-    std::vector<int> smallSorted;
-    std::vector<int> smallReversed;
-    std::vector<int> smallRandom;
-    std::vector<int> smallPartial;
-    std::vector<int> bigSorted;
-    std::vector<int> bigReversed;
-    std::vector<int> bigRandom;
-    std::vector<int> bigPartial;
+// Reversed Integer Set
+//small
+    int smallReversed[] = {10,9,8,7,6,5,4,3,2,1};
+//big
+    int bigReversed[dataSize];
+    for (int i = 0; i < dataSize; ++i) {
+        bigReversed[i] = dataSize - i;
+    }
+
+// Random Integer Set
+//small
+    int smallRandom[] = {9, 4, 1, 8, 2, 7, 5, 10, 3, 6};
+//big
+    int bigRandom[dataSize];
+    srand(time(0));
+    for (int i = 0; i < dataSize; ++i) {
+        bigRandom[i] = rand() % 10000 + 1;
+    }
+
+// Partially Sorted Integer Set
+//small
+    int smallPartial[] = {5, 1, 4, 3, 2, 6, 7, 8, 9, 10};
+//big
+    int bigPartial[dataSize];
+    for (int i = 0; i < dataSize; ++i) {
+        if (i < dataSize / 2) {
+            // First half: Partially sorted (every 5th element is sorted)
+            if (i % 5 == 0) {
+                bigPartial[i] = i + 1;
+            } else {
+                bigPartial[i] = rand() % 10000 + 1;
+            }
+        } else {
+            // Second half: Sorted in ascending order
+            bigPartial[i] = i + 1;
+        }
+    }
+    //delete
+    for (int i = 0; i < dataSize; ++i) {
+        std::cout<< bigRandom[i] << std::endl;
+    }
+
+    int smallSorted[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int smallReversed[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int smallRandom[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int smallPartial[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 
     std::vector<int> data = {25,10,5,30,13,7};
 
-    //pushes user input into 4 arrays
     for(int i = 0; i < data.size(); i++) {
         smallSorted.push_back(data[i]);
         smallReversed.push_back(data[data.size() - 1 - i]);
         smallRandom.push_back(data[i]);
         smallPartial.push_back(data[i]);
     }
-    //shuffles smallRandom
+
+    insertionSort(smallSorted);
+    for(int i = 0; i < smallSorted.size(); i++) {
+        std::cout << smallSorted[i] << " ";
+    }
+    std::cout << std::endl;
+
+    insertionSort(smallReversed);
+    for(int i = 0; i < smallReversed.size(); i++) {
+        std::cout << smallReversed[i] << " ";
+    }
+    std::cout << std::endl;
+
     std::random_shuffle(smallRandom.begin(), smallRandom.end());
-    //partially sorts smallPartial
+    insertionSort(smallRandom);
+    for(int i = 0; i < smallRandom.size(); i++) {
+        std::cout << smallRandom[i] << " ";
+    }
+    std::cout << std::endl;
+
     int offset = smallPartial.size()/2;
-    std::partial_sort (smallPartial.begin(), smallPartial.begin() + offset, smallPartial.end(), check);
+    std::partial_sort (smallPartial.begin(), smallPartial.begin()+ offset, smallPartial.end(), check);
+    for(int i = 0; i < smallPartial.size(); i++) {
+        std::cout << smallPartial[i] << " ";
+    }
+    std::cout << std::endl;
 
-
-    printAndInsertionSort("Sorted", smallSorted);
-    printAndInsertionSort("Reversed", smallReversed);
-    printAndInsertionSort("Random", smallRandom);
-    printAndInsertionSort("Partially Sorted", smallPartial);
+    insertionSort(smallPartial);
+    for(int i = 0; i < smallPartial.size(); i++) {
+        std::cout << smallPartial[i] << " ";
+    }
 
     std::clock_t start;
     double duration;
