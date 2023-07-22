@@ -22,10 +22,10 @@ Sort::Sort(int size, std::vector<int> sorted, std::vector<int> reversed, std::ve
     this->sorted = sorted;
     this->reversed = reversed;
     this->random = random;
-    this->partial = partial ;
+    this->partial = partial;
 }
 
-bool Sort::check (int i,int j) {
+bool Sort::check (int i, int j) {
     return (i < j);
 }
 
@@ -89,27 +89,37 @@ void Sort::quickSort(std::vector<int> arr, int minIndex, int maxIndex){
     }
 }
 
-void Sort::printSort(int sor){
-    switch(sor) {
+void Sort::print(int alg){
+    for (int i = 0; i < this->size; i++){
+        std::cout << this->sorted[i] << ' ';
+    }
+    for (int i = 0; i < this->size; i++){
+        std::cout << this->reversed[i] << ' ';
+    }
+    std::cout << std::endl;
+    for (int i = 0; i < this->size; i++){
+        std::cout << this->random[i] << ' ';
+    }
+    std::cout << std::endl;
+    for (int i = 0; i < this->size; i++){
+        std::cout << this->partial[i] << ' ';
+    }
+    std::cout << std::endl;
+}
+
+void Sort::printSort(int alg){
+    switch(alg) {
         case 1:
-            for (int i = 0; i < this->size; i++){
-                std::cout << this->sorted[i] << ' ';
-            }
+            print(alg);
             break;
         case 2:
-            for (int i = 0; i < this->size; i++){
-                std::cout << this->reversed[i] << ' ';
-            }
+            print(alg);
             break;
         case 3:
-            for (int i = 0; i < this->size; i++){
-                std::cout << this->random[i] << ' ';
-            }
+            print(alg);
             break;
         case 4:
-            for (int i = 0; i < this->size; i++){
-                std::cout << this->partial[i] << ' ';
-            }
+            print(alg);
             break;
     }
     std::cout << std::endl;
