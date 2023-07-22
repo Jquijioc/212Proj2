@@ -15,8 +15,8 @@ class Sort {
         void print(int alg);
         void printSort(int alg);
         static bool check (int i, int j);
-        void insertionSort(std::vector<int>& arr);
-        void printAndInsertionSort(std::string description, std::vector<int>& dataSet);
+        std::vector<int> insertionSort(std::vector<int> arr);
+        void printAndInsertionSort(std::string description, std::vector<int> dataSet);
         void quickSort(std::vector<int> arr, int minIndex, int maxIndex);
         int partition(std::vector<int> arr, int minIndex, int maxIndex);
 };
