@@ -1,3 +1,4 @@
+#include "sort.h"
 #include <iostream>
 #include <vector>
 #include <cstdio>
@@ -5,44 +6,34 @@
 #include <algorithm>
 #include <random>
 #include <iterator>
-#include "sort.h"
+#include <fstream>
+#include <sstream>
 
-int main() {
-    Sort sort;
+int main(int argc, char* argv[]){
+    std::string file_name(argv[1]); //Get file name.
 
-    std::vector<int> sorted;
-    std::vector<int> reversed;
-    std::vector<int> random;
-    std::vector<int> partial;
+    std::vector<int> file_data;
+    std::ifstream file(file_name);
 
-    std::vector<int> data = {25,10,5,30,13,7};
+    std::vector<std::vector<int>> sequence;
+    std::string line;
 
-    //pushes user input into 4 arrays
-    for(int i = 0; i < data.size(); i++) {
-        sorted.push_back(data[i]);
-        reversed.push_back(data[data.size() - 1 - i]);
-        random.push_back(data[i]);
-        partial.push_back(data[i]);
+    while (std::getline(file, line)){
+        int i = 0;
+        std::stringstream str(line);
+        std::vector<int> seq;
+        int num;
+        while (str >> num) {
+            seq.push_back(num);
+        }
+        sequence.push_back(seq);
+
     }
-    //shuffles smallRandom
-    std::random_shuffle(random.begin(), random.end());
-    //partially sorts smallPartial
-    int offset = partial.size()/2;
-    std::partial_sort (partial.begin(), partial.begin() + offset, partial.end(), Sort::check);
 
+    Sort sort(sequence[0].size(), sequence[0], sequence[1], sequence[2], sequence[3]);
+    sort.printSort(1);
+    sort.printSort(2);
+    sort.printSort(3);
+    sort.printSort(4);
 
-    //BENCHMARK
-    std::clock_t start;
-    double duration;
-
-    start = std::clock();
-
-    //sort.printAndInsertionSort("Sorted", sorted);
-    //sort.printAndInsertionSort("Reversed", reversed);
-    //sort.printAndInsertionSort("Random", random);
-    sort.printAndInsertionSort("Partially Sorted", partial);
-
-    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-
-    std::cout<<"Benchmark: "<< duration << std::endl;
 }
