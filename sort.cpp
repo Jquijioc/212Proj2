@@ -34,31 +34,27 @@ void Sort::benchmark() {
     double duration;
 
     start = std::clock();
-    insertionSort(sorted);
     duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
     std::cout << "Time to sort sorted vector: " << duration << " seconds" << std::endl;
     printAndInsertionSort("Sorted", sorted);
 
     start = std::clock();
-    insertionSort(reversed);
     duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
     std::cout << "Time to sort reversed vector: " << duration << " seconds" << std::endl;
     printAndInsertionSort("Reversed", reversed);
 
     start = std::clock();
-    insertionSort(random);
     duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
     std::cout << "Time to sort random vector: " << duration << " seconds" << std::endl;
     printAndInsertionSort("Random", random);
 
     start = std::clock();
-    insertionSort(partial);
     duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
     std::cout << "Time to sort partially sorted vector: " << duration << " seconds" << std::endl;
     printAndInsertionSort("Partial", partial);
 }
 
-void Sort::insertionSort(std::vector<int>& dataSet) {
+std::vector<int> Sort::insertionSort(std::vector<int> dataSet) {
     for (int i = 1; i < dataSet.size(); i++) {
         int key = dataSet[i];
         int j = i - 1;
@@ -68,16 +64,17 @@ void Sort::insertionSort(std::vector<int>& dataSet) {
         }
         dataSet[j + 1] = key;
     }
+    return dataSet;
 }
 
-void Sort::printAndInsertionSort(std::string description, std::vector<int>& dataSet) {
+void Sort::printAndInsertionSort(std::string description, std::vector<int> dataSet) {
     std::cout << "Current " << description << " List" << std::endl;
     std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << std::endl;
 
     std::cout << "After Insertion Sort" << std::endl;
-    insertionSort(dataSet);
-    std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::vector<int> sorted = insertionSort(dataSet);
+    std::copy(sorted.begin(), sorted.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n" << std::endl;
 }
 
