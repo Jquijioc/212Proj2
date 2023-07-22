@@ -103,6 +103,46 @@ void Sort::quickSort(std::vector<int> arr, int minIndex, int maxIndex){
         quickSort(arr, partIndex + 1, maxIndex);
     }
 }
+void sort::cycleSort(std::vector<int>& arr) {
+    int n = arr.size();
+    
+    for (int cycleStart = 0; cycleStart < n - 1; ++cycleStart) {
+        int item = arr[cycleStart];
+        int pos = cycleStart;
+        
+        // Find the position where we put the element 'item'
+        for (int i = cycleStart + 1; i < n; ++i) {
+            if (arr[i] < item) {
+                ++pos;
+            }
+        }
+        
+        // If the item is already in the correct position, skip this cycle
+        if (pos == cycleStart) {
+            continue;
+        }
+        
+        // Otherwise, put the item to its correct position
+        while (item == arr[pos]) {
+            ++pos;
+        }
+        std::swap(item, arr[pos]);
+        
+        // Rotate the rest of the cycle
+        while (pos != cycleStart) {
+            pos = cycleStart;
+            for (int i = cycleStart + 1; i < n; ++i) {
+                if (arr[i] < item) {
+                    ++pos;
+                }
+            }
+            while (item == arr[pos]) {
+                ++pos;
+            }
+            std::swap(item, arr[pos]);
+        }
+    }
+}
 
 void Sort::print(int alg){
     for (int i = 0; i < this->size; i++){
