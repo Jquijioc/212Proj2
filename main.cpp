@@ -5,10 +5,10 @@
 #include <algorithm>
 #include <random>
 #include <iterator>
-#include "algo.h"
+#include "sort.h"
 
 int main() {
-    SortAlgo sortAlgo;
+    Sort sort;
 
     std::vector<int> sorted;
     std::vector<int> reversed;
@@ -28,7 +28,7 @@ int main() {
     std::random_shuffle(random.begin(), random.end());
     //partially sorts smallPartial
     int offset = partial.size()/2;
-    std::partial_sort (partial.begin(), partial.begin() + offset, partial.end(), SortAlgo::check);
+    std::partial_sort (partial.begin(), partial.begin() + offset, partial.end(), Sort::check);
 
 
     //BENCHMARK
@@ -37,10 +37,10 @@ int main() {
 
     start = std::clock();
 
-    //sortAlgo.printAndInsertionSort("Sorted", sorted);
-    //sortAlgo.printAndInsertionSort("Reversed", reversed);
-    //sortAlgo.printAndInsertionSort("Random", random);
-    sortAlgo.printAndInsertionSort("Partially Sorted", partial);
+    //sort.printAndInsertionSort("Sorted", sorted);
+    //sort.printAndInsertionSort("Reversed", reversed);
+    //sort.printAndInsertionSort("Random", random);
+    sort.printAndInsertionSort("Partially Sorted", partial);
 
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 
