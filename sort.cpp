@@ -29,19 +29,33 @@ bool Sort::check (int i, int j) {
     return (i < j);
 }
 
-void Sort::benchmark(){
+void Sort::benchmark() {
     std::clock_t start;
     double duration;
+
     start = std::clock();
+    insertionSort(sorted);
+    duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+    std::cout << "Time to sort sorted vector: " << duration << " seconds" << std::endl;
+    printAndInsertionSort("Sorted", sorted);
 
-    //sort.printAndInsertionSort("Sorted", sorted);
-    //sort.printAndInsertionSort("Reversed", reversed);
-    //sort.printAndInsertionSort("Random", random);
-    //sort.printAndInsertionSort("Partially Sorted", partial);
+    start = std::clock();
+    insertionSort(reversed);
+    duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+    std::cout << "Time to sort reversed vector: " << duration << " seconds" << std::endl;
+    printAndInsertionSort("Reversed", reversed);
 
-    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    start = std::clock();
+    insertionSort(random);
+    duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+    std::cout << "Time to sort random vector: " << duration << " seconds" << std::endl;
+    printAndInsertionSort("Random", random);
 
-    std::cout<<" Benchmark: "<< duration << std::endl;
+    start = std::clock();
+    insertionSort(partial);
+    duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+    std::cout << "Time to sort partially sorted vector: " << duration << " seconds" << std::endl;
+    printAndInsertionSort("Partial", partial);
 }
 
 void Sort::insertionSort(std::vector<int>& dataSet) {
