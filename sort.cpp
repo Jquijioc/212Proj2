@@ -1,13 +1,13 @@
 #include <iostream>
 #include <vector>
-#include "algo.h"
+#include "sort.h"
 #include <iterator>
 
-bool SortAlgo::check (int i,int j) {
+bool Sort::check (int i,int j) {
     return (i < j);
 }
 
-void SortAlgo::insertionSort(std::vector<int>& dataSet) {
+void Sort::insertionSort(std::vector<int>& dataSet) {
     for (int i = 1; i < dataSet.size(); i++) {
         int key = dataSet[i];
         int j = i - 1;
@@ -19,7 +19,7 @@ void SortAlgo::insertionSort(std::vector<int>& dataSet) {
     }
 }
 
-void SortAlgo::printAndInsertionSort(std::string description, std::vector<int>& dataSet) {
+void Sort::printAndInsertionSort(std::string description, std::vector<int>& dataSet) {
     std::cout << "Current " << description << " List" << std::endl;
     std::copy(dataSet.begin(), dataSet.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << std::endl;
@@ -30,7 +30,7 @@ void SortAlgo::printAndInsertionSort(std::string description, std::vector<int>& 
     std::cout << "\n" << std::endl;
 }
 
-int SortAlgo::partition(std::vector<int> arr, int minIndex, int maxIndex){
+int Sort::partition(std::vector<int> arr, int minIndex, int maxIndex){
     int pivot = arr[maxIndex];
     int i = (minIndex - 1);
 
@@ -44,7 +44,7 @@ int SortAlgo::partition(std::vector<int> arr, int minIndex, int maxIndex){
     return (i + 1);
 }
 
-void SortAlgo::quickSort(std::vector<int> arr, int minIndex, int maxIndex){
+void Sort::quickSort(std::vector<int> arr, int minIndex, int maxIndex){
     if (minIndex < maxIndex) {
         int partIndex = partition(arr, minIndex, maxIndex);
         quickSort(arr, minIndex, partIndex - 1);
