@@ -31,9 +31,4 @@ int main(int argc, char* argv[]){
     }
 
     Sort sort(sequence[0].size(), sequence[0], sequence[1], sequence[2], sequence[3]);
-    sort.printSort(1);
-    sort.printSort(2);
-    sort.printSort(3);
-    sort.printSort(4);
-
 }
