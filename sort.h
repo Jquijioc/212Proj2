@@ -1,4 +1,7 @@
-class SortAlgo {
+#include <iostream>
+#include <vector>
+
+class Sort {
     public:
     void insertionSort(std::vector<int>& arr);
     void printAndInsertionSort(std::string description, std::vector<int>& dataSet);
