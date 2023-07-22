@@ -12,7 +12,8 @@ class Sort {
         Sort();
         Sort(int size, std::vector<int> sorted, std::vector<int> reversed, std::vector<int> random, std::vector<int> partial);
         void benchmark();
-        void printSort(int sor);
+        void print(int alg);
+        void printSort(int alg);
         static bool check (int i, int j);
         void insertionSort(std::vector<int>& arr);
         void printAndInsertionSort(std::string description, std::vector<int>& dataSet);
