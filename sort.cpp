@@ -1,10 +1,47 @@
+#include "sort.h"
 #include <iostream>
 #include <vector>
-#include "sort.h"
+#include <cstdio>
+#include <ctime>
+#include <algorithm>
+#include <random>
 #include <iterator>
+#include <fstream>
+#include <sstream>
+
+Sort::Sort(){
+    int size = 0;
+    this->sorted = {};
+    this->reversed = {};
+    this->random = {};
+    this->partial = {} ;
+}
+
+Sort::Sort(int size, std::vector<int> sorted, std::vector<int> reversed, std::vector<int> random, std::vector<int> partial){
+    this->size = size;
+    this->sorted = sorted;
+    this->reversed = reversed;
+    this->random = random;
+    this->partial = partial ;
+}
 
 bool Sort::check (int i,int j) {
     return (i < j);
+}
+
+void Sort::benchmark(){
+    std::clock_t start;
+    double duration;
+    start = std::clock();
+
+    //sort.printAndInsertionSort("Sorted", sorted);
+    //sort.printAndInsertionSort("Reversed", reversed);
+    //sort.printAndInsertionSort("Random", random);
+    //sort.printAndInsertionSort("Partially Sorted", partial);
+
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+
+    std::cout<<" Benchmark: "<< duration << std::endl;
 }
 
 void Sort::insertionSort(std::vector<int>& dataSet) {
@@ -50,4 +87,30 @@ void Sort::quickSort(std::vector<int> arr, int minIndex, int maxIndex){
         quickSort(arr, minIndex, partIndex - 1);
         quickSort(arr, partIndex + 1, maxIndex);
     }
+}
+
+void Sort::printSort(int sor){
+    switch(sor) {
+        case 1:
+            for (int i = 0; i < this->size; i++){
+                std::cout << this->sorted[i] << ' ';
+            }
+            break;
+        case 2:
+            for (int i = 0; i < this->size; i++){
+                std::cout << this->reversed[i] << ' ';
+            }
+            break;
+        case 3:
+            for (int i = 0; i < this->size; i++){
+                std::cout << this->random[i] << ' ';
+            }
+            break;
+        case 4:
+            for (int i = 0; i < this->size; i++){
+                std::cout << this->partial[i] << ' ';
+            }
+            break;
+    }
+    std::cout << std::endl;
 }
