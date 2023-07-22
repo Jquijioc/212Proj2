@@ -56,39 +56,35 @@ void quickSort(std::vector<int> arr, int minIndex, int maxIndex){
     }
 }
 
+
+
 int main() {
-    //- use different sequence sizes
-    //- use different types of sequences:
-    //- sorted, reversed, random, partially sorted
-    std::vector<int> smallSorted;
-    std::vector<int> smallReversed;
-    std::vector<int> smallRandom;
-    std::vector<int> smallPartial;
-    std::vector<int> bigSorted;
-    std::vector<int> bigReversed;
-    std::vector<int> bigRandom;
-    std::vector<int> bigPartial;
+
+    std::vector<int> sorted;
+    std::vector<int> reversed;
+    std::vector<int> random;
+    std::vector<int> partial;
 
     std::vector<int> data = {25,10,5,30,13,7};
 
     //pushes user input into 4 arrays
     for(int i = 0; i < data.size(); i++) {
-        smallSorted.push_back(data[i]);
-        smallReversed.push_back(data[data.size() - 1 - i]);
-        smallRandom.push_back(data[i]);
-        smallPartial.push_back(data[i]);
+        sorted.push_back(data[i]);
+        reversed.push_back(data[data.size() - 1 - i]);
+        random.push_back(data[i]);
+        partial.push_back(data[i]);
     }
     //shuffles smallRandom
-    std::random_shuffle(smallRandom.begin(), smallRandom.end());
+    std::random_shuffle(random.begin(), random.end());
     //partially sorts smallPartial
-    int offset = smallPartial.size()/2;
-    std::partial_sort (smallPartial.begin(), smallPartial.begin() + offset, smallPartial.end(), check);
+    int offset = partial.size()/2;
+    std::partial_sort (partial.begin(), partial.begin() + offset, partial.end(), check);
 
 
-    printAndInsertionSort("Sorted", smallSorted);
-    printAndInsertionSort("Reversed", smallReversed);
-    printAndInsertionSort("Random", smallRandom);
-    printAndInsertionSort("Partially Sorted", smallPartial);
+    printAndInsertionSort("Sorted", sorted);
+    printAndInsertionSort("Reversed", reversed);
+    printAndInsertionSort("Random", random);
+    printAndInsertionSort("Partially Sorted", partial);
 
     std::clock_t start;
     double duration;
