@@ -8,6 +8,7 @@
 #include <iterator>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 
 Sort::Sort(){
     int size = 0;
@@ -154,14 +155,13 @@ void Sort::printSort(int alg){
 }
 
 void Sort::benchmark(int alg) {
-    std::clock_t start;
-    double duration;
     std::vector<std::vector<int>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
     std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
 
     std::string sortName;
 
     for(int i = 0; i < dataSets.size(); i++){
+        auto start = std::chrono::high_resolution_clock::now();
         std::vector<int> dataSet = dataSets[i];
         std::string description = descriptions[i];
 
@@ -171,36 +171,33 @@ void Sort::benchmark(int alg) {
                 sortName = "Insertion Sort";
                 std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
                 print(alg, dataSet);
-                start = std::clock();
                 dataSet = insertionSort(dataSet);
                 break;
             case 2:
                 sortName = "Quick Sort";
                 std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
                 print(alg, dataSet);
-                start = std::clock();
                 quickSort(dataSet, 0, dataSet.size()-1);
                 break;
             case 3:
                 sortName = "Merge Sort";
                 std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
                 print(alg, dataSet);
-                start = std::clock();
                 dataSet = mergeSort(dataSet);
                 break;
             case 4:
                 sortName = "Cycle Sort";
                 std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
                 print(alg, dataSet);
-                start = std::clock();
                 cycleSort(dataSet);
                 break;
         }
 
-        duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = end - start;
 
         std::cout << "After " << sortName << " of " << description << " List" << std::endl;
         print(alg, dataSet);
-        std::cout << "Time to sort: " << duration << " seconds" << std::endl << std::endl;
+        std::cout << "Time to sort: " << elapsed.count() << " seconds" << std::endl << std::endl;
     }
 }
