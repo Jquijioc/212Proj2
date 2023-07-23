@@ -108,7 +108,7 @@ void Sort::displayMenu(std::string file_name) {
         }
     }
 }
-
+//A method to allow for custom user input of a sorted array to try out sorting algorithms on.
 void Sort::inputMenu() {
     std::cout << "Enter the size of the custom dataset: ";
     std::cin >> this->size;
@@ -137,22 +137,31 @@ void Sort::inputMenu() {
     std::random_shuffle(random.begin(), random.end());
 
     //Sort the 'partial' dataset partially (e.g., half of the data in ascending order).
-    std::sort(partial.begin(), partial.begin() + size / 2, [](const KeyedInt &a, const KeyedInt &b) {
+    std::random_shuffle(partial.begin(), partial.end());
+    std::partial_sort(partial.begin(), partial.begin() + size / 2, partial.end(), [](const KeyedInt &a, const KeyedInt &b) {
         return a.value < b.value;
     });
 
     //Reverse the 'reversed' dataset.
     std::reverse(reversed.begin(), reversed.end());
 
-    //Display the datasets.
+    // Reassign keys alphabetically after all datasets are modified.
+    for (int i = 0; i < size; i++) {
+        sorted[i].key = std::string(1, 'a' + i);
+        random[i].key = std::string(1, 'a' + i);
+        partial[i].key = std::string(1, 'a' + i);
+        reversed[i].key = std::string(1, 'a' + i);
+    }
+
+    // Display the datasets.
     std::cout << "Sorted: ";
-    print(0, sorted, true);
+    print(0, sorted, false);
     std::cout << "Reversed: ";
-    print(0, reversed, true);
+    print(0, reversed, false);
     std::cout << "Random: ";
-    print(0, random, true);
+    print(0, random, false);
     std::cout << "Partial: ";
-    print(0, partial, true);
+    print(0, partial, false);
 
     // Ask if the user wants to output the datasets to a file.
     std::cout << "Do you want to output the datasets to a file? (Y/N): ";
@@ -166,6 +175,7 @@ void Sort::inputMenu() {
     }
 }
 
+//A method to allow for a custom new file selection for datasets while the program is running.
 void Sort::fileMenu() {
     std::cout << "Enter the name of the text file to read data from: ";
     std::string file_name;
