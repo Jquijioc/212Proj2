@@ -20,20 +20,18 @@ Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
   - sorted, reversed, random, partially sorted
 ```
 
-# HOW TO COMPILE/INSTRUCTIONS TO USE PROJECT
+## Runtime Instructions
 
 ## Instructions
 
 ```
-Other IDES may be used, however CLion is Preferred
+Other IDES may be used, however the code was originally written and tested with CLion.
 
-Follow These Steps:
-
-1. Download the files sort.h, sort.cpp, main.cpp from our Github Repository
-2. Open preferred IDE
-3. Create your own data set or use one of our data sets provided
-4. Use the CLA provided below
-5. Follow the prompt instructions  
+The program should be run as per these steps:
+1. Download the files sort.h, sort.cpp, main.cpp from our Github repository.
+2. Open your preferred IDE.
+3. Create your own data set or use one of our data sets provided.
+5. Follow the prompt instructions.
 
 NOTE: To open your own data set, it must follow the format below:
 
