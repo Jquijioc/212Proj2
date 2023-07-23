@@ -25,6 +25,18 @@ Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
 ## Instructions
 
 ```
+Other IDES may be used, however CLion is Preferred
+
+Follow These Steps:
+
+1. Download the files sort.h, sort.cpp, main.cpp from our Github Repository
+```
+
+## Command Line Arguments
+```
+Use the following CLA Arguments
+
+g++ sort.cpp main.cpp -o test && ./test sort.txt
 
 ```
 
