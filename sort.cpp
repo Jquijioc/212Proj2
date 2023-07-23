@@ -5,8 +5,10 @@
 #include <ctime>
 #include <algorithm>
 #include <fstream>
+#include <sstream>
 #include <chrono>
 
+//A default constructor with empty data sets.
 Sort::Sort() {
     int size = 0;
     this->sorted = {};
@@ -15,6 +17,7 @@ Sort::Sort() {
     this->partial = {};
 }
 
+//A parameterized constructor to initialize the Sort object with provided data sets.
 Sort::Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reversed, std::vector<KeyedInt> random, std::vector<KeyedInt> partial) {
     this->size = size;
     this->sorted = sorted;
@@ -23,12 +26,15 @@ Sort::Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reverse
     this->partial = partial;
 }
 
+//A method to display the main menu and interact with the sorting algorithms, allowing a user to either view a sorting algorithm step-by-step or analyze its time and stability with benchmarks.
 void Sort::mainMenu(std::string file_name) {
     std::string input;
-    while(true) {
+    while (true) {
         std::cout << "Input an integer:\n";
         std::cout << "1. Analyze sort.\n";
         std::cout << "2. Display sort.\n";
+        std::cout << "3. Input custom data.\n";
+        std::cout << "4. Input file data.\n";
         std::cout << "0. Quit.\n";
         std::cout << "\n";
 
@@ -39,12 +45,17 @@ void Sort::mainMenu(std::string file_name) {
             analyzeMenu(file_name);
         } else if (input == "2") {
             displayMenu(file_name);
+        } else if (input == "3") {
+            inputMenu();
+        } else if (input == "4") {
+            fileMenu();
         } else {
             std::cout << "Unrecognized command: " << input << std::endl;
         }
     }
 }
 
+//A method to display the analysis menu for benchmarking and stability testing of sorting algorithms.
 void Sort::analyzeMenu(std::string file_name) {
     std::string input;
     while(true) {
@@ -64,13 +75,14 @@ void Sort::analyzeMenu(std::string file_name) {
             break;
         } else if (input == "1" || input == "2" || input == "3" || input == "4") {
             int sortMethod = std::stoi(input);
-            benchmark(sortMethod);
+            analyzeSort(sortMethod);
         } else {
             std::cout << "Unrecognized command: " << input << std::endl;
         }
     }
 }
 
+//A method to display the display menu for viewing how an algorithm sorts a dataset iteratively.
 void Sort::displayMenu(std::string file_name) {
     std::string input;
     while(true) {
@@ -97,95 +109,151 @@ void Sort::displayMenu(std::string file_name) {
     }
 }
 
-void Sort::displaySort(int alg, int sort_type) {
-    std::vector<std::vector<KeyedInt>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
-    std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
-    std::string input;
-    while(true) {
-        std::cout << "Select the sorting algorithm to run on the " << descriptions[alg-1] <<" data set."<< std::endl;
-        std::cout << "1: Insertion Sort" << std::endl;
-        std::cout << "2: Quick Sort" << std::endl;
-        std::cout << "3: Merge Sort" << std::endl;
-        std::cout << "4: Cycle Sort" << std::endl;
-        std::cout << "5. Back" << std::endl;
-        std::cout << "0. Quit" << std::endl;
-        std::cout << "\n";
+void Sort::inputMenu() {
+    std::cout << "Enter the size of the custom dataset: ";
+    std::cin >> this->size;
 
-        getline(std::cin, input);
-        if (input == "0") {
-            abort();
-        } else if (input == "5"){
-            break;
-        } else if (input == "1" || input == "2" || input == "3" || input == "4") {
-            int sortMethod = std::stoi(input);
-            std::vector<KeyedInt> dataSet = dataSets[alg-1];
-            std::string description = descriptions[alg-1];
-            switch (sortMethod) {
-                case 1:
-                    dataSet = insertionSort(dataSet, true);
-                    break;
-                case 2:
-                    quickSort(dataSet, 0, dataSet.size() - 1, true);
-                    break;
-                case 3:
-                    dataSet = mergeSort(dataSet, true);
-                    break;
-                case 4:
-                    dataSet = cycleSort(dataSet, true);
-                    break;
-            }
-        } else {
-            std::cout << "Unrecognized command: " << input << std::endl;
-        }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::cout << "Enter " << size << " space-separated sorted integers for a custom dataset: ";
+
+    std::vector <KeyedInt> customData;
+    for (int i = 0; i < size; i++) {
+        int num;
+        std::cin >> num;
+        KeyedInt temp = {num, std::string(1, 'a' + i)}; // Assign keys as 'a', 'b', 'c', ...
+        customData.push_back(temp);
+    }
+
+    //Clear the input buffer to avoid any remaining newline characters.
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    this->sorted = customData;
+    this->random = customData;
+    this->partial = customData;
+    this->reversed = customData;
+
+    //Randomly shuffle the 'random' dataset.
+    std::random_shuffle(random.begin(), random.end());
+
+    //Sort the 'partial' dataset partially (e.g., half of the data in ascending order).
+    std::sort(partial.begin(), partial.begin() + size / 2, [](const KeyedInt &a, const KeyedInt &b) {
+        return a.value < b.value;
+    });
+
+    //Reverse the 'reversed' dataset.
+    std::reverse(reversed.begin(), reversed.end());
+
+    //Display the datasets.
+    std::cout << "Sorted: ";
+    print(0, sorted, true);
+    std::cout << "Reversed: ";
+    print(0, reversed, true);
+    std::cout << "Random: ";
+    print(0, random, true);
+    std::cout << "Partial: ";
+    print(0, partial, true);
+
+    // Ask if the user wants to output the datasets to a file.
+    std::cout << "Do you want to output the datasets to a file? (Y/N): ";
+    std::string outputChoice;
+    getline(std::cin, outputChoice);
+    if (outputChoice == "Y" || outputChoice == "y") {
+        std::cout << "Enter the name of the output file: ";
+        std::string outputFileName;
+        getline(std::cin, outputFileName);
+        outputFile(outputFileName);
     }
 }
 
-void Sort::print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps) {
-    // Print the original values.
-    std::cout << "Value: ";
-    for (const auto& item : dataSet) {
-        std::cout << item.value << " ";
+void Sort::fileMenu() {
+    std::cout << "Enter the name of the text file to read data from: ";
+    std::string file_name;
+    getline(std::cin, file_name);
+    std::ifstream file(file_name);
+
+    if (!file) {
+        std::cout << "Error: Unable to open the file " << file_name << std::endl;
+        return;
     }
-    std::cout << std::endl;
-    if(!displaySteps){
-        // Print the keyed values.
-        std::cout << "Key: ";
-        for (const auto& item : dataSet) {
-            std::cout << item.value << item.key << " ";
+
+    std::vector<std::vector<KeyedInt>> sequence;
+    std::string line;
+
+    while (std::getline(file, line)) {
+        std::stringstream str(line);
+        std::vector<KeyedInt> seq;
+        std::string dec;
+        str >> dec;
+        int num;
+        char key = 'a';
+        while (str >> num) {
+            KeyedInt temp = {num, std::string(1, key)};
+            seq.push_back(temp);
+            key++;
         }
-        std::cout << std::endl;
+
+        sequence.push_back(seq);
     }
+
+    if (sequence.size() != 4) {
+        std::cout << "Error: The file should contain four datasets." << std::endl;
+        return;
+    }
+
+    this->sorted = sequence[0];
+    this->reversed = sequence[1];
+    this->random = sequence[2];
+    this->partial = sequence[3];
+
+    std::cout << "Sorted ";
+    print(0, sorted, true);
+    std::cout << "Reversed ";
+    print(0, reversed, true);
+    std::cout << "Random ";
+    print(0, random, true);
+    std::cout << "Partial ";
+    print(0, partial, true);
 }
 
-void Sort::printSort(int alg) {
-    std::vector<std::vector<KeyedInt>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
-    std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
+void Sort::outputFile(const std::string& file_name) {
+    std::ofstream outputFile(file_name);
 
-    for (int i = 0; i < dataSets.size(); i++) {
-        std::vector<KeyedInt> dataSet = dataSets[i];
-        std::string description = descriptions[i];
-        std::cout << "Before Sort of " << description << " List" << std::endl;
-        print(alg, dataSet, false);
-        switch (alg) {
-            case 1:
-                dataSet = insertionSort(dataSet, false);
-                break;
-            case 2:
-                quickSort(dataSet, 0, dataSet.size() - 1, false);
-                break;
-            case 3:
-                dataSet = mergeSort(dataSet, false);
-                break;
-            case 4:
-                dataSet = cycleSort(dataSet, false);
-                break;
-        }
-        std::cout << "After Sort of " << description << " List" << std::endl;
-        print(alg, dataSet, false);
+    if (!outputFile) {
+        std::cout << "Error: Unable to open the file " << file_name << " for writing." << std::endl;
+        return;
     }
+
+    // Output the datasets to the file.
+    outputFile << "Sorted ";
+    for (const auto& item : sorted) {
+        outputFile << item.value << " ";
+    }
+    outputFile << std::endl;
+
+    outputFile << "Reversed ";
+    for (const auto& item : reversed) {
+        outputFile << item.value << " ";
+    }
+    outputFile << std::endl;
+
+    outputFile << "Random ";
+    for (const auto& item : random) {
+        outputFile << item.value << " ";
+    }
+    outputFile << std::endl;
+
+    outputFile << "Partial ";
+    for (const auto& item : partial) {
+        outputFile << item.value << " ";
+    }
+    outputFile << std::endl;
+
+    std::cout << "The data was written to the file " << file_name << " successfully." << std::endl;
 }
 
-void Sort::benchmark(int alg) {
+//A method that uses the chrono library for granular time outputs along with key displays for stability to benchmark sorting algorithms.
+void Sort::analyzeSort(int alg) {
     std::vector<std::vector<KeyedInt>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
     std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
     std::string name;
@@ -230,6 +298,70 @@ void Sort::benchmark(int alg) {
     }
 }
 
+//A method for displaying the step-by-step process of sorts. This method lets the user choose which sorting algorithm to run on a selected dataset.
+void Sort::displaySort(int alg, int sort_type) {
+    std::vector<std::vector<KeyedInt>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
+    std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
+    std::string input;
+    while(true) {
+        std::cout << "Select the sorting algorithm to run on the " << descriptions[alg-1] <<" data set."<< std::endl;
+        std::cout << "1: Insertion Sort" << std::endl;
+        std::cout << "2: Quick Sort" << std::endl;
+        std::cout << "3: Merge Sort" << std::endl;
+        std::cout << "4: Cycle Sort" << std::endl;
+        std::cout << "5. Back" << std::endl;
+        std::cout << "0. Quit" << std::endl;
+        std::cout << "\n";
+
+        getline(std::cin, input);
+
+        if (input == "0") {
+            abort();
+        } else if (input == "5"){
+            break;
+        } else if (input == "1" || input == "2" || input == "3" || input == "4") {
+            int sortMethod = std::stoi(input);
+            std::vector<KeyedInt> dataSet = dataSets[alg-1];
+            std::string description = descriptions[alg-1];
+            switch (sortMethod) {
+                case 1:
+                    dataSet = insertionSort(dataSet, true);
+                    break;
+                case 2:
+                    quickSort(dataSet, 0, dataSet.size() - 1, true);
+                    break;
+                case 3:
+                    dataSet = mergeSort(dataSet, true);
+                    break;
+                case 4:
+                    dataSet = cycleSort(dataSet, true);
+                    break;
+            }
+        } else {
+            std::cout << "Unrecognized command: " << input << std::endl;
+        }
+    }
+}
+
+//The print method prints all the values of a dataset separated by white spaces (and if displaySteps is on, it prints keys as well).
+void Sort::print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps) {
+    // Print the original values.
+    std::cout << "Value: ";
+    for (const auto& item : dataSet) {
+        std::cout << item.value << " ";
+    }
+    std::cout << std::endl;
+    if(!displaySteps){ //If the user is in the analysis mode, display steps is false and keys are printed along with values.
+        // Print the keyed values.
+        std::cout << "Key: ";
+        for (const auto& item : dataSet) {
+            std::cout << item.value << item.key << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+//A basic insertion sort implementation.
 std::vector<KeyedInt> Sort::insertionSort(std::vector<KeyedInt> arr, bool displaySteps) {
     for (int i = 1; i < arr.size(); i++) {
         KeyedInt key = arr[i];
@@ -248,7 +380,7 @@ std::vector<KeyedInt> Sort::insertionSort(std::vector<KeyedInt> arr, bool displa
     return arr;
 }
 
-
+//A basic quick sort implementation.
 void Sort::quickSort(std::vector<KeyedInt>& arr, int low, int high, bool displaySteps) {
     if (low < high) {
         int pivot = partition(arr, low, high, displaySteps);
@@ -262,6 +394,7 @@ void Sort::quickSort(std::vector<KeyedInt>& arr, int low, int high, bool display
     }
 }
 
+//A partition helper method for the quick sort implementation.
 int Sort::partition(std::vector<KeyedInt>& arr, int low, int high, bool displaySteps) {
     KeyedInt pivot = arr[high];
     int i = (low - 1);
@@ -276,6 +409,7 @@ int Sort::partition(std::vector<KeyedInt>& arr, int low, int high, bool displayS
     return (i + 1);
 }
 
+//A basic merge sort implementation.
 std::vector<KeyedInt> Sort::mergeSort(std::vector<KeyedInt> arr, bool displaySteps) {
     if (arr.size() > 1) {
         int mid = arr.size() / 2;
@@ -302,6 +436,7 @@ std::vector<KeyedInt> Sort::mergeSort(std::vector<KeyedInt> arr, bool displaySte
     return arr;
 }
 
+//A merge helper method for the merge sort implementation.
 std::vector<KeyedInt> Sort::merge(std::vector<KeyedInt> left, std::vector<KeyedInt> right, bool displaySteps) {
     std::vector<KeyedInt> result;
     while (!left.empty() && !right.empty()) {
@@ -324,6 +459,7 @@ std::vector<KeyedInt> Sort::merge(std::vector<KeyedInt> left, std::vector<KeyedI
     return result;
 }
 
+//A basic cycle sort implementation.
 std::vector<KeyedInt> Sort::cycleSort(std::vector<KeyedInt> arr, bool displaySteps) {
     for (int cycle_start = 0; cycle_start <= arr.size() - 2; cycle_start++) {
         KeyedInt item = arr[cycle_start];
@@ -334,32 +470,25 @@ std::vector<KeyedInt> Sort::cycleSort(std::vector<KeyedInt> arr, bool displaySte
                 pos++;
             }
         }
-
         if (pos == cycle_start) {
             continue;
         }
-
         while (item.value == arr[pos].value) {
             pos += 1;
         }
-
         if (item.value != arr[pos].value) {
             std::swap(item, arr[pos]);
         }
-
         while (pos != cycle_start) {
             pos = cycle_start;
-
             for (int i = cycle_start + 1; i < arr.size(); i++) {
                 if (arr[i].value < item.value) {
                     pos += 1;
                 }
             }
-
             while (item.value == arr[pos].value) {
                 pos += 1;
             }
-
             if (item.value != arr[pos].value) {
                 std::swap(item, arr[pos]);
             }
