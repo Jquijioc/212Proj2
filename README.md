@@ -58,7 +58,7 @@ The premise of this project is to build a codebase to evaluate sorting algorithm
     return 0
 
 ```
-## sort.cpp
+## sort.h
 
 ```
 #include <iostream>
@@ -137,5 +137,63 @@ class Sort {
         // Get user input
         input = get user input as a string
         // Check
+
+//sort analyzeSort
+    //dataSets = an array containing sorted, reversed, random, and partial datasets
+    //descriptions = an array containing descriptions of the datasets
+    //for i = 0 to the length of dataSets - 1:
+        //start = get the current time using chrono library
+
+        //dataSet = get the dataset from dataSets at index i
+        //description = get the description from descriptions at index i
+
+        //Perform the selected sorting algorithm
+        //switch case:
+            //case 1 Insertion Sort:
+                //name = "Insertion Sort"
+                //print "Before " + name + " of " + description + " List"
+                //call print method with alg=alg, dataSet=dataSet, and displaySteps=false
+                //dataSet = call insertionSort method on dataSet with displaySteps=false
+            //case 2 Quick Sort:
+                //name = "Quick Sort"
+                //print "Before " + name + " of " + description + " List"
+                //call print method with alg=alg, dataSet=dataSet, and displaySteps=false
+                //call quickSort method on dataSet with minIndex=0, maxIndex=the size of dataSet - 1, and displaySteps=false
+            //case 3 Merge Sort:
+                //name = "Merge Sort"
+                //print "Before " + name + " of " + description + " List"
+                //call print method with alg=alg, dataSet=dataSet, and displaySteps=false
+                //dataSet = call mergeSort method on dataSet with displaySteps=false
+            //case 4 Cycle Sort:
+                //name = "Cycle Sort"
+                //print "Before " + name + " of " + description + " List"
+                //call print method with alg=alg, dataSet=dataSet, and displaySteps=false
+                //dataSet = call cycleSort method on dataSet with displaySteps=false
+
+        //end = get the current time using chrono library
+        //elapsed = calculate the difference between end and start
+
+        //Display the sorted dataset and elapsed time
+        //print "After " + name + " of " + description + " List"
+        //call print method with alg=alg, dataSet=dataSet, and displaySteps=false
+        //print "Time to sort: " + elapsed + " seconds"
+
+//sort insertionSort
+    insert insertion sort code..
+
+//sort quickSort
+    insert quick sort code..
+
+//sort partition
+    insert partition helper code..
+
+//sort mergeSort
+    insert merge sort code..
+
+//sort merge
+  insert merge helper code..
+
+//sort cycleSort
+    insert cycle sort code..
 
 ```
