@@ -115,7 +115,7 @@ void Sort::inputMenu() {
 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    std::cout << "Enter " << size << " space-separated sorted integers for a custom dataset: ";
+    std::cout << "Enter " << size << " space-separated integers for a custom dataset: ";
 
     std::vector <KeyedInt> customData;
     for (int i = 0; i < size; i++) {
@@ -132,6 +132,9 @@ void Sort::inputMenu() {
     this->random = customData;
     this->partial = customData;
     this->reversed = customData;
+
+    //Sort the dataset (this uses the std::stable_sort function) to preserve item orders.
+    sorted = mergeSort(sorted, false);
 
     //Randomly shuffle the 'random' dataset.
     std::random_shuffle(random.begin(), random.end());
