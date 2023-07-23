@@ -31,10 +31,10 @@ void Sort::mainMenu() {
     std::string input;
     while (true) {
         std::cout << "Input an integer:\n";
-        std::cout << "1. Analyze sort.\n";
-        std::cout << "2. Display sort.\n";
-        std::cout << "3. Input custom data.\n";
-        std::cout << "4. Input file data.\n";
+        std::cout << "1. Input custom data.\n";
+        std::cout << "2. Input file data.\n";
+        std::cout << "3. Analyze sort.\n";
+        std::cout << "4. Display sort.\n";
         std::cout << "0. Quit.\n";
         std::cout << "\n";
 
@@ -42,13 +42,13 @@ void Sort::mainMenu() {
         if (input == "0") {
             break;
         } else if (input == "1") {
-            analyzeMenu();
-        } else if (input == "2") {
-            displayMenu();
-        } else if (input == "3") {
             inputMenu();
-        } else if (input == "4") {
+        } else if (input == "2") {
             fileMenu();
+        } else if (input == "3") {
+            analyzeMenu();
+        } else if (input == "4") {
+            displayMenu();
         } else {
             std::cout << "Unrecognized command: " << input << std::endl;
         }
