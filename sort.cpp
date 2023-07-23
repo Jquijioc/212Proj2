@@ -158,13 +158,13 @@ void Sort::inputMenu() {
 
     // Display the datasets.
     std::cout << "Sorted: ";
-    print(0, sorted, false);
+    print(0, sorted, true);
     std::cout << "Reversed: ";
-    print(0, reversed, false);
+    print(0, reversed, true);
     std::cout << "Random: ";
-    print(0, random, false);
+    print(0, random, true);
     std::cout << "Partial: ";
-    print(0, partial, false);
+    print(0, partial, true);
 
     // Ask if the user wants to output the datasets to a file.
     std::cout << "Do you want to output the datasets to a file? (Y/N): ";
