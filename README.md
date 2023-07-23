@@ -45,16 +45,14 @@ Random 7 3 10 8 2 1 5 9 4 6
 Partial 1 2 3 4 5 10 8 7 9 6
 
 ```
+# Command Line Arguments
 
-## Command Line Arguments
+The program's command line execution follow the form of:
+
 ```
-Use the following CLA Arguments
-
 g++ sort.cpp main.cpp -o test && ./test
-
 ```
 
-    
 # Pseudocode
 
 ## main.cpp
