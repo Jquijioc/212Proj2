@@ -31,6 +31,7 @@ Follow These Steps:
 
 1. Download the files sort.h, sort.cpp, main.cpp from our Github Repository
 2. Open preferred IDE
+3. Create your own data set or use one of our data sets provided
 3. Use the CLA provided below
 4. 
 
