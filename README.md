@@ -242,6 +242,54 @@ class Sort {
         //call print method with alg=alg, dataSet=dataSet, and displaySteps=false
         //print "Time to sort: " + elapsed + " seconds"
 
+//sort displaySort(alg, sort_type):
+    //while true:
+        //print "Select the sorting algorithm to run on the " + sorted/reversed/etc. + " data set."
+        //print "1: Insertion Sort"
+        //print "2: Quick Sort"
+        //print "3: Merge Sort"
+        //print "4: Cycle Sort"
+        //print "5. Back"
+        //print "0. Quit"
+        //print ""
+
+        //input = read the user's input
+
+        //if input is "0":
+            //abort the program
+        //else if input is "5":
+            //break
+        //else if input is "1" or input is "2" or input is "3" or input is "4":
+            //sortMethod = convert input to an integer
+
+            //dataSet = get the dataset from dataSets at index alg-1
+            //description = get the description from descriptions at index alg-1
+
+            // Perform the selected sorting algorithm
+            //switch sortMethod:
+                //case 1:
+                    //dataSet = call insertionSort method on dataSet with displaySteps=true
+                //case 2:
+                    //call quickSort method on dataSet with minIndex=0, maxIndex=the size of dataSet - 1, and displaySteps=true
+                //case 3:
+                    //dataSet = call mergeSort method on dataSet with displaySteps=true
+                //case 4:
+                    //dataSet = call cycleSort method on dataSet with displaySteps=true
+        //else:
+            //print "Unrecognized command: " + input
+
+//sort print(alg, dataSet, displaySteps):
+    // Print the original values
+    //for each item in dataSet:
+        //print item.value + " "
+    //print ""
+
+    //if displaySteps is false:
+        //Print the keyed values
+        //for each item in dataSet:
+            //print item.value + item.key + " "
+        //print ""
+
 //sort insertionSort
     insert insertion sort code..
 
