@@ -12,19 +12,20 @@
 int main(int argc, char* argv[]) {
     std::string file_name(argv[1]); //Get file name.
 
-    std::vector<int> file_data;
     std::ifstream file(file_name);
 
-    std::vector <std::vector<int>> sequence;
+    std::vector <std::vector<KeyedInt>> sequence;
     std::string line;
 
     while (std::getline(file, line)) {
-        int i = 0;
         std::stringstream str(line);
-        std::vector<int> seq;
+        std::vector<KeyedInt> seq;
         int num;
+        char key = 'a';
         while (str >> num) {
-            seq.push_back(num);
+            KeyedInt temp = {num, std::string(1, key)};
+            seq.push_back(temp);
+            key++;
         }
         sequence.push_back(seq);
     }
@@ -33,16 +34,10 @@ int main(int argc, char* argv[]) {
 
     std::string input;
 
-
-    std::cout << "Input an integer to sort " << file_name << " via algorithm:" << std::endl;
-    std::cout << "1: Insertion Sort" << std::endl;
-    std::cout << "2: Quick Sort" << std::endl;
-    std::cout << "3: Merge Sort" << std::endl;
-    std::cout << "4: Cycle Sort" << std::endl;
-    std::cout << "0: Quit" << std::endl;
-
+    sort.menu(file_name);
 
     while(getline(std::cin, input) && input != "0"){
+        std::cout << std::endl;
         if(input == "0"){
             break;
         } else if (input == "1"){
@@ -61,6 +56,8 @@ int main(int argc, char* argv[]) {
             std::cout << "Unrecognized command: " << input << std::endl;
             continue;
         }
+        sort.menu(file_name);
     }
+
     return 0;
 }
