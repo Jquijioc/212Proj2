@@ -1,15 +1,10 @@
 #include "sort.h"
 #include <iostream>
 #include <vector>
-#include <cstdio>
 #include <string>
 #include <ctime>
-#include <stdlib.h>
 #include <algorithm>
-#include <random>
-#include <iterator>
 #include <fstream>
-#include <sstream>
 #include <chrono>
 
 Sort::Sort() {
@@ -193,14 +188,12 @@ void Sort::printSort(int alg) {
 void Sort::benchmark(int alg) {
     std::vector<std::vector<KeyedInt>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
     std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
-
     std::string name;
 
     for (int i = 0; i < dataSets.size(); i++) {
         auto start = std::chrono::high_resolution_clock::now();
         std::vector<KeyedInt> dataSet = dataSets[i];
         std::string description = descriptions[i];
-
         switch (alg) {
             case 1:
                 name = "Insertion Sort";
