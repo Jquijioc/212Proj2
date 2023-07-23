@@ -19,4 +19,7 @@ class Sort {
         void cycleSort(std::vector<int>& arr);
         void quickSort(std::vector<int>& arr, int minIndex, int maxIndex);
         int partition(std::vector<int>& arr, int minIndex, int maxIndex);
+        void mergeSort(std::vector<int>& arr, int left, int right);
+        void merge(std::vector<int>& arr, int left, int mid, int right);
+        void printAndMergeSort(std::string description, std::vector<int>& dataSet);
 };
