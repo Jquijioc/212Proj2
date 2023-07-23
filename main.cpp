@@ -32,32 +32,7 @@ int main(int argc, char* argv[]) {
 
     Sort sort(sequence[0].size(), sequence[0], sequence[1], sequence[2], sequence[3]);
 
-    std::string input;
-
-    sort.menu(file_name);
-
-    while(getline(std::cin, input) && input != "0"){
-        std::cout << std::endl;
-        if(input == "0"){
-            break;
-        } else if (input == "1"){
-            int sortMethod = std::stoi(input);
-            sort.benchmark(sortMethod);
-        } else if(input == "2"){
-            int sortMethod = std::stoi(input);
-            sort.benchmark(sortMethod);
-        } else if(input == "3"){
-            int sortMethod = std::stoi(input);
-            sort.benchmark(sortMethod);
-        } else if(input == "4") {
-            int sortMethod = std::stoi(input);
-            sort.benchmark(sortMethod);
-        } else {
-            std::cout << "Unrecognized command: " << input << std::endl;
-            continue;
-        }
-        sort.menu(file_name);
-    }
+    sort.mainMenu(file_name);
 
     return 0;
 }
