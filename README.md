@@ -2,7 +2,7 @@
 Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
 
 ## Summary of the Project
-
+```
 The premise of this project is to build a codebase to evaluate sorting algorithms using data sets of different sizes.
 1. Individual: returns individual deliverable name and grade
 2. Category: returns all grades from category and category total
@@ -10,10 +10,11 @@ The premise of this project is to build a codebase to evaluate sorting algorithm
    * all grades in their respective categories and course overall
    * only category totals and course overall
    * only course overall
+```
 
-#HOW TO COMPILE/INSTRUCTIONS TO USE PROJECT
+# HOW TO COMPILE/INSTRUCTIONS TO USE PROJECT
 
-##Instructions
+## Instructions
 
 ```
 
