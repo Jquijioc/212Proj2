@@ -23,11 +23,11 @@ class Sort {
         void print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps);
         void printArray(const std::vector<KeyedInt>& arr);
         void printSort(int alg);
+        void displaySort(int alg, int sort_type);
         //Menu methods.
         void mainMenu(std::string file_name);
-        void displaySubMenu(std::string file_name);
-        void displaySortMenu(std::string file_name);
-        void displaySort(int alg, int sort_type);
+        void analyzeMenu(std::string file_name);
+        void displayMenu(std::string file_name);
         //Sorting methods.
         std::vector<KeyedInt> insertionSort(std::vector<KeyedInt> arr, bool displaySteps = false);
         void quickSort(std::vector<KeyedInt>& arr, int minIndex, int maxIndex, bool displaySteps = false);
