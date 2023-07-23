@@ -167,7 +167,7 @@ void Sort::inputMenu() {
     print(0, partial, true);
 
     // Ask if the user wants to output the datasets to a file.
-    std::cout << "Do you want to output the datasets to a file? (Y/N): ";
+    std::cout << "Do you want to output the datasets to a .txt file? (Y/N): ";
     std::string outputChoice;
     getline(std::cin, outputChoice);
     if (outputChoice == "Y" || outputChoice == "y") {
@@ -230,7 +230,7 @@ void Sort::fileMenu() {
 }
 
 void Sort::outputFile(const std::string& file_name) {
-    std::ofstream outputFile(file_name);
+    std::ofstream outputFile(file_name + ".txt");
 
     if (!outputFile) {
         std::cout << "Error: Unable to open the file " << file_name << " for writing." << std::endl;
@@ -295,11 +295,16 @@ void Sort::analyzeSort(int alg) {
                 dataSet = mergeSort(dataSet, false);
                 break;
             case 4:
-                name = "Cycle Sort";
-                std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(alg, dataSet, false);
-                dataSet = cycleSort(dataSet, false);
-                break;
+                if(dataSet.size() < 2){
+                    std::cout << "Cannot execute Cycle Sort with dataset of size " << dataSet.size() << ". Closing.." << std::endl;
+                    return;
+                } else {
+                    name = "Cycle Sort";
+                    std::cout << "Before " << name << " of " << description << " List" << std::endl;
+                    print(alg, dataSet, false);
+                    dataSet = cycleSort(dataSet, false);
+                    break;
+                }
         }
 
         auto end = std::chrono::high_resolution_clock::now();
@@ -347,7 +352,11 @@ void Sort::displaySort(int alg, int sort_type) {
                     dataSet = mergeSort(dataSet, true);
                     break;
                 case 4:
-                    dataSet = cycleSort(dataSet, true);
+                    if(dataSet.size() < 2){
+                        std::cout << "Cannot execute Cycle Sort with dataset of size " << dataSet.size() << ". Closing.." << std::endl;
+                    } else {
+                        dataSet = cycleSort(dataSet, true);
+                    }
                     break;
             }
         } else {
