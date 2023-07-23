@@ -30,13 +30,24 @@ Other IDES may be used, however CLion is Preferred
 Follow These Steps:
 
 1. Download the files sort.h, sort.cpp, main.cpp from our Github Repository
+2. Open preferred IDE
+3. Use the CLA provided below
+4. 
+
+NOTE: To open your own data set, it must follow the format below:
+
+Sorted 1 2 3 4 5 6 7 8 9 10
+Reversed 10 9 8 7 6 5 4 3 2 1
+Random 7 3 10 8 2 1 5 9 4 6
+Partial 1 2 3 4 5 10 8 7 9 6
+
 ```
 
 ## Command Line Arguments
 ```
 Use the following CLA Arguments
 
-g++ sort.cpp main.cpp -o test && ./test sort.txt
+g++ sort.cpp main.cpp -o test && ./test
 
 ```
 
