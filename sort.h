@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 
+//When read into the program, values are transposed into a keyedInt struct and assigned a letter key to keep track of original object locations after sorting to measure stability.
 struct KeyedInt {
     int value;
     std::string key;
@@ -9,26 +10,27 @@ struct KeyedInt {
 
 class Sort {
     private:
-        std::vector<KeyedInt> sorted;
-        std::vector<KeyedInt> reversed;
-        std::vector<KeyedInt> random;
-        std::vector<KeyedInt> partial;
-        int size;
+        std::vector<KeyedInt> sorted; //A fully-sorted dataset.
+        std::vector<KeyedInt> reversed; //A reversed dataset.
+        std::vector<KeyedInt> random; //A randomly sorted dataset.
+        std::vector<KeyedInt> partial; //A partially sorted dataset.
+        int size; //The dataset's size.
     public:
-        //Sort constructors.
+        //Sort constructors, default and parameterized.
         Sort();
         Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reversed, std::vector<KeyedInt> random, std::vector<KeyedInt> partial);
-        //Helper methods
-        void benchmark(int alg);
-        void print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps);
-        void printArray(const std::vector<KeyedInt>& arr);
-        void printSort(int alg);
-        void displaySort(int alg, int sort_type);
         //Menu methods.
         void mainMenu(std::string file_name);
         void analyzeMenu(std::string file_name);
         void displayMenu(std::string file_name);
-        //Sorting methods.
+        void inputMenu(); //The user can input custom data to test against sorting algorithms.
+        void fileMenu(); //The user can input a file name to select as their custom data.
+        void outputFile(const std::string& file_name);
+        //Display/analysis methods.
+        void analyzeSort(int alg);
+        void displaySort(int alg, int sort_type);
+        void print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps);
+        //Sorting methods with their helper methods.
         std::vector<KeyedInt> insertionSort(std::vector<KeyedInt> arr, bool displaySteps = false);
         void quickSort(std::vector<KeyedInt>& arr, int minIndex, int maxIndex, bool displaySteps = false);
         int partition(std::vector<KeyedInt>& arr, int low, int high, bool displaySteps);
