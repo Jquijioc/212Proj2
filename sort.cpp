@@ -165,24 +165,30 @@ void Sort::benchmark(int alg) {
         std::vector<int> dataSet = dataSets[i];
         std::string description = descriptions[i];
 
-        std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
-        print(alg, dataSet);
 
         switch(alg) {
             case 1:
                 sortName = "Insertion Sort";
+                std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
+                print(alg, dataSet);
                 dataSet = insertionSort(dataSet);
                 break;
             case 2:
-                sortName = "Quick Sort";
+                sortName = "Insertion Sort";
+                std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
+                print(alg, dataSet);
                 quickSort(dataSet, 0, dataSet.size()-1);
                 break;
             case 3:
-                sortName = "Merge Sort";
+                sortName = "Insertion Sort";
+                std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
+                print(alg, dataSet);
                 dataSet = mergeSort(dataSet);
                 break;
             case 4:
-                sortName = "Cycle Sort";
+                sortName = "Insertion Sort";
+                std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
+                print(alg, dataSet);
                 cycleSort(dataSet);
                 break;
         }
