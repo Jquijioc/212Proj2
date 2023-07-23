@@ -27,7 +27,7 @@ Sort::Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reverse
 }
 
 //A method to display the main menu and interact with the sorting algorithms, allowing a user to either view a sorting algorithm step-by-step or analyze its time and stability with benchmarks.
-void Sort::mainMenu(std::string file_name) {
+void Sort::mainMenu() {
     std::string input;
     while (true) {
         std::cout << "Input an integer:\n";
@@ -42,9 +42,9 @@ void Sort::mainMenu(std::string file_name) {
         if (input == "0") {
             break;
         } else if (input == "1") {
-            analyzeMenu(file_name);
+            analyzeMenu();
         } else if (input == "2") {
-            displayMenu(file_name);
+            displayMenu();
         } else if (input == "3") {
             inputMenu();
         } else if (input == "4") {
@@ -56,10 +56,10 @@ void Sort::mainMenu(std::string file_name) {
 }
 
 //A method to display the analysis menu for benchmarking and stability testing of sorting algorithms.
-void Sort::analyzeMenu(std::string file_name) {
+void Sort::analyzeMenu() {
     std::string input;
     while(true) {
-        std::cout << "Input an integer to sort " << file_name << " via algorithm:" << std::endl;
+        std::cout << "Input an integer to sort via algorithm:" << std::endl;
         std::cout << "1: Insertion Sort" << std::endl;
         std::cout << "2: Quick Sort" << std::endl;
         std::cout << "3: Merge Sort" << std::endl;
@@ -83,7 +83,7 @@ void Sort::analyzeMenu(std::string file_name) {
 }
 
 //A method to display the display menu for viewing how an algorithm sorts a dataset iteratively.
-void Sort::displayMenu(std::string file_name) {
+void Sort::displayMenu() {
     std::string input;
     while(true) {
         std::cout << "Select the type of data set for the sorting display:" << std::endl;
