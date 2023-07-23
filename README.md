@@ -65,40 +65,40 @@ The premise of this project is to build a codebase to evaluate sorting algorithm
 #include <vector>
 #include <string>
 
-struct KeyedInt {
+//struct KeyedInt {
     int value;
     std::string key;
 };
 
 class Sort {
     private:
-        std::vector<KeyedInt> sorted;
-        std::vector<KeyedInt> reversed; 
-        std::vector<KeyedInt> random; 
-        std::vector<KeyedInt> partial;
-        int size; //The dataset's size.
+        //std::vector<KeyedInt> sorted;
+        //std::vector<KeyedInt> reversed; 
+        //std::vector<KeyedInt> random; 
+        //std::vector<KeyedInt> partial;
+        //int size; //The dataset's size.
     public:
         //Sort constructors, default and parameterized.
-        Sort();
-        Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reversed, std::vector<KeyedInt> random, std::vector<KeyedInt> partial);
+        //Sort();
+        //Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reversed, std::vector<KeyedInt> random, std::vector<KeyedInt> partial);
 
-        void mainMenu(std::string file_name);
-        void analyzeMenu(std::string file_name);
-        void displayMenu(std::string file_name);
-        void inputMenu(); //The user can input custom data to test against sorting algorithms.
-        void fileMenu(); //The user can input a file name to select as their custom data.
-        void outputFile(const std::string& file_name);
+        //void mainMenu(std::string file_name);
+        //void analyzeMenu(std::string file_name);
+        //void displayMenu(std::string file_name);
+        //void inputMenu(); //The user can input custom data to test against sorting algorithms.
+        //void fileMenu(); //The user can input a file name to select as their custom data.
+        //void outputFile(const std::string& file_name);
 
-        void analyzeSort(int alg);
-        void displaySort(int alg, int sort_type);
-        void print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps);
+        //void analyzeSort(int alg);
+        //void displaySort(int alg, int sort_type);
+        //void print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps);
 
-        std::vector<KeyedInt> insertionSort(std::vector<KeyedInt> arr, bool displaySteps = false);
-        void quickSort(std::vector<KeyedInt>& arr, int minIndex, int maxIndex, bool displaySteps = false);
-        int partition(std::vector<KeyedInt>& arr, int low, int high, bool displaySteps);
-        std::vector<KeyedInt> mergeSort(std::vector<KeyedInt> arr, bool displaySteps = false);
-        std::vector<KeyedInt> merge(std::vector<KeyedInt> left, std::vector<KeyedInt> right, bool displaySteps);
-        std::vector<KeyedInt> cycleSort(std::vector<KeyedInt> arr, bool displaySteps = false);
+        //std::vector<KeyedInt> insertionSort(std::vector<KeyedInt> arr, bool displaySteps = false);
+        //void quickSort(std::vector<KeyedInt>& arr, int minIndex, int maxIndex, bool displaySteps = false);
+        //int partition(std::vector<KeyedInt>& arr, int low, int high, bool displaySteps);
+        //std::vector<KeyedInt> mergeSort(std::vector<KeyedInt> arr, bool displaySteps = false);
+        //std::vector<KeyedInt> merge(std::vector<KeyedInt> left, std::vector<KeyedInt> right, bool displaySteps);
+        //std::vector<KeyedInt> cycleSort(std::vector<KeyedInt> arr, bool displaySteps = false);
     };
 
 ```
@@ -116,15 +116,13 @@ class Sort {
 #include <sstream>
 #include <chrono>
 
-
 //sort object constructor
     //this.size = size
     //this.sorted = sorted
     //this.reversed = reversed
     //this.random = random
-    t//his.partial = partial
+    //this.partial = partial
 
-// Define methods for Sort class
 //sort mainMenu(file_name):
     //while true:
         //Display the main menu options
@@ -135,8 +133,74 @@ class Sort {
         //print "4. Input file data."
         //print "0. Quit."
         // Get user input
-        input = get user input as a string
+        i//nput = get user input as a string
         // Check
+
+//sort displayMenu(file_name):
+   // while true:
+        //Display the display menu options
+        //print "Select the type of data set for the sorting display:"
+        //print "1. Sorted"
+        //print "2. Reversed"
+        //print "3. Random"
+        //print "4. Partial"
+        //print "5. Back"
+        //print "0. Quit"
+        //print ""
+
+        //Get user input
+        //input = get user input as a string
+
+        //Check user choice and perform the corresponding action
+        //if input is "0":
+            //abort the program
+        //else if input is "5":
+            //break from the loop
+        //else if input is "1" or input is "2" or input is "3" or input is "4":
+            //sortMethod = parse input as an integer
+            //displaySort(sortMethod)
+        //else:
+            //print "Unrecognized command: " + input
+
+//sort outputFile(file_name):
+    //outputFile = create a new output file with the name file_name
+    //Output the datasets to the file
+
+//sort inputMenu(file_name):
+    //Get the size of the custom dataset from the user
+    //Get the custom dataset from the user
+    //for i = 1 to size:
+        //num = parse next integer from user input
+        //key = convert i to its corresponding alphabetical character (a -> 1, b -> 2, ...)
+        //temp = create a new KeyedInt object with value=num and key=key
+        //add temp to customData
+    // Initialize the datasets with the custom data
+
+    //Sort the datasets accordingly
+    //Display the datasets
+
+    //Ask if the user wants to output the datasets to a file
+    //if outputChoice is "Y" or outputChoice is "y":
+      //output to file
+
+//sort fileMenu(file_name):
+    //print "Enter the name of the text file to read data from: "
+    //file_name = get user input as a string
+    //file = open the file with the name file_name
+    //sequence = an empty vector
+    //while there are lines left in the file:
+        //line = read the next line from the file
+        //str = create a new stringstream with the content of the line
+        //seq = an empty vector
+        //dec = read the next string from the stringstream
+        //key = 'a'
+        //while there are more numbers to read from the stringstream:
+            //num = read the next integer from the stringstream
+            //temp = create a new KeyedInt object with value=num and key=key
+            //add temp to the seq vector
+            //increment the key to the next character
+        //add seq to the sequence vector
+    // Display the datasets
 
 //sort analyzeSort
     //dataSets = an array containing sorted, reversed, random, and partial datasets
