@@ -165,6 +165,9 @@ void Sort::benchmark(int alg) {
         std::vector<int> dataSet = dataSets[i];
         std::string description = descriptions[i];
 
+        std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
+        print(alg, dataSet);
+
         switch(alg) {
             case 1:
                 sortName = "Insertion Sort";
@@ -183,9 +186,6 @@ void Sort::benchmark(int alg) {
                 cycleSort(dataSet);
                 break;
         }
-
-        std::cout << "Before " << sortName << " of " << description << " List" << std::endl;
-        print(alg, dataSet);
 
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsed = end - start;
