@@ -22,8 +22,6 @@ Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
 
 ## Runtime Instructions
 
-## Instructions
-
 ```
 Other IDES may be used, however the code was originally written and tested with CLion.
 
