@@ -3,13 +3,21 @@ Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
 
 ## Summary of the Project
 ```
-The premise of this project is to build a codebase to evaluate sorting algorithms using data sets of different sizes.
-1. Individual: returns individual deliverable name and grade
-2. Category: returns all grades from category and category total
-3. Course:
-   * all grades in their respective categories and course overall
-   * only category totals and course overall
-   * only course overall
+**Sorting Algorithms**
+^^^
+
+**_Implement the following algorithms_**
+
+- `insertion sort`
+- `mergesort`
+- `quicksort`
+- 1 additional algorithm not present in class
+
+**_Benchmark all algorithms recording their runtime_**
+
+- use different sequence sizes
+- use different types of sequences:
+  - sorted, reversed, random, partially sorted
 ```
 
 # HOW TO COMPILE/INSTRUCTIONS TO USE PROJECT
