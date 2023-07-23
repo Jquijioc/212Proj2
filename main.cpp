@@ -27,35 +27,40 @@ int main(int argc, char* argv[]) {
             seq.push_back(num);
         }
         sequence.push_back(seq);
-
     }
 
     Sort sort(sequence[0].size(), sequence[0], sequence[1], sequence[2], sequence[3]);
 
     std::string input;
 
-    std::cout << "Input an integer to sort via algorithm:" << std::endl;
+
+    std::cout << "Input an integer to sort " << file_name << " via algorithm:" << std::endl;
     std::cout << "1: Insertion Sort" << std::endl;
     std::cout << "2: Quick Sort" << std::endl;
     std::cout << "3: Merge Sort" << std::endl;
     std::cout << "4: Cycle Sort" << std::endl;
-    std::cout << "5: Quit" << std::endl;
+    std::cout << "0: Quit" << std::endl;
 
-    while(getline(std::cin, input) && input != "5"){
-        if(input == "5"){
+
+    while(getline(std::cin, input) && input != "0"){
+        if(input == "0"){
             break;
         } else if (input == "1"){
-            std::cout << "INSERTION SORT HERE" << std::endl;
-        } else if (input == "2"){
-            std::cout << "QUICK SORT HERE" << std::endl;
-        } else if (input == "3"){
-            std::cout << "MERGE SORT HERE" << std::endl;
-        } else if(input == "4"){
-            std::cout << "CYCLE SORT HERE" << std::endl;
+            int sortMethod = std::stoi(input);
+            sort.benchmark(sortMethod);
+        } else if(input == "2"){
+            int sortMethod = std::stoi(input);
+            sort.benchmark(sortMethod);
+        } else if(input == "3"){
+            int sortMethod = std::stoi(input);
+            sort.benchmark(sortMethod);
+        } else if(input == "4") {
+            int sortMethod = std::stoi(input);
+            sort.benchmark(sortMethod);
         } else {
             std::cout << "Unrecognized command: " << input << std::endl;
+            continue;
         }
     }
-
     return 0;
 }
