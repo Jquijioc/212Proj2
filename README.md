@@ -10,6 +10,14 @@ The premise of this project is to build a codebase to evaluate sorting algorithm
    * all grades in their respective categories and course overall
    * only category totals and course overall
    * only course overall
+
+#HOW TO COMPILE/INSTRUCTIONS TO USE PROJECT
+
+##Instructions
+
+```
+
+
     
 # Pseudocode
 
