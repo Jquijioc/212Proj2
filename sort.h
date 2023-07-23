@@ -20,9 +20,9 @@ class Sort {
         Sort();
         Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reversed, std::vector<KeyedInt> random, std::vector<KeyedInt> partial);
         //Menu methods.
-        void mainMenu(std::string file_name);
-        void analyzeMenu(std::string file_name);
-        void displayMenu(std::string file_name);
+        void mainMenu();
+        void analyzeMenu();
+        void displayMenu();
         void inputMenu(); //The user can input custom data to test against sorting algorithms.
         void fileMenu(); //The user can input a file name to select as their custom data.
         void outputFile(const std::string& file_name);
