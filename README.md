@@ -20,32 +20,32 @@ Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
   - sorted, reversed, random, partially sorted
 ```
 
-## Runtime Instructions
+# Runtime Instructions
 
-```
 Other IDES may be used, however the code was originally written and tested with CLion.
 
 The program should be run as per these steps:
-1. Download the files sort.h, sort.cpp, main.cpp from our Github repository
+1. Download the files sort.h, sort.cpp, main.cpp from our Github repository.
 2. Open your preferred IDE.
-3. Use the following CLA command provided
-4. You may create your own data set or use one of our data sets provided, please follow instructions closely
-5. If you are using our data sets, skip to step 8
-6. If you did not create your own data set or don't want to use ours, please select "Input custom data"
-7. Select y to output your created data set to .txt file
-8. Select the option "Input file data"
-9. Enter the name of the .txt file
+3. Use the following CLA command provided.
+4. You may create your own data set or use one of our data sets provided, please follow instructions closely.
+5. If you are using our data sets, skip to step 8.
+6. If you did not create your own data set or don't want to use ours, please select "Input custom data".
+7. Select y to output your created data set to .txt file.
+8. Select the option "Input file data".
+9. Enter the name of the .txt file.
 10. You may now use our Analyze Sort and Display Sort feature.
 
 NOTE: To open your own data set, it must be created in a .txt file and follow the format below:
 
+```
 Sorted 1 2 3 4 5 6 7 8 9 10
 Reversed 10 9 8 7 6 5 4 3 2 1
 Random 7 3 10 8 2 1 5 9 4 6
 Partial 1 2 3 4 5 10 8 7 9 6
 
 ```
-# Command Line Arguments
+## Command Line Arguments
 
 The program's command line execution follow the form of:
 
