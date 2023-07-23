@@ -20,6 +20,8 @@ int main(int argc, char* argv[]) {
     while (std::getline(file, line)) {
         std::stringstream str(line);
         std::vector<KeyedInt> seq;
+        std::string dec;
+        str >> dec;
         int num;
         char key = 'a';
         while (str >> num) {
