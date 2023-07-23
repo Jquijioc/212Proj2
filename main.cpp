@@ -1,11 +1,6 @@
 #include "sort.h"
 #include <iostream>
 #include <vector>
-#include <cstdio>
-#include <ctime>
-#include <algorithm>
-#include <random>
-#include <iterator>
 #include <fstream>
 #include <sstream>
 
