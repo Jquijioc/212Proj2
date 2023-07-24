@@ -275,11 +275,11 @@ void Sort::analyzeSort(int alg) {
         auto start = std::chrono::high_resolution_clock::now();
         std::vector<KeyedInt> dataSet = dataSets[i];
         std::string description = descriptions[i];
-        name = "Insertion Sort";
-        std::cout << "Before " << name << " of " << description << " List" << std::endl;
-        print(dataSet, false);
         switch (alg) {
             case 1:
+                name = "Insertion Sort";
+                std::cout << "Before " << name << " of " << description << " List" << std::endl;
+                print(dataSet, false);
                 dataSet = insertionSort(dataSet, false);
                 break;
             case 2:
@@ -543,5 +543,3 @@ std::vector<KeyedInt> Sort::cycleSort(std::vector<KeyedInt> arr, bool displaySte
     // Return the sorted array after completing all cycles
     return arr;
 }
-
-
