@@ -486,42 +486,62 @@ std::vector<KeyedInt> Sort::merge(std::vector<KeyedInt> left, std::vector<KeyedI
 //A basic cycle sort implementation.
 std::vector<KeyedInt> Sort::cycleSort(std::vector<KeyedInt> arr, bool displaySteps) {
     for (int cycle_start = 0; cycle_start <= arr.size() - 2; cycle_start++) {
+        // If displaySteps is true, print the array before starting each cycle for visualization
+        if (displaySteps) {
+            std::cout << "Step " << cycle_start << ": ";
+            print(arr, displaySteps); // Cycle Sort
+        }
+
+        // Select the current item to be placed in its correct position
         KeyedInt item = arr[cycle_start];
 
+        // Find the position where we put the item by counting all smaller elements on the right side
         int pos = cycle_start;
         for (int i = cycle_start + 1; i < arr.size(); i++) {
             if (arr[i].value < item.value) {
                 pos++;
             }
         }
+
+        // If the item is already in the correct position, move to the next cycle start
         if (pos == cycle_start) {
             continue;
         }
+
+        // Ignore all duplicate elements with the same value as the current item
         while (item.value == arr[pos].value) {
             pos += 1;
         }
+
+        // Put the item in its right position
         if (item.value != arr[pos].value) {
             std::swap(item, arr[pos]);
         }
+
+        // Rotate the rest of the cycle until the current item reaches its correct position
         while (pos != cycle_start) {
+            // Start from the cycle's beginning again to find the position for the next element
             pos = cycle_start;
             for (int i = cycle_start + 1; i < arr.size(); i++) {
                 if (arr[i].value < item.value) {
                     pos += 1;
                 }
             }
+
+            // Ignore all duplicate elements with the same value as the current item
             while (item.value == arr[pos].value) {
                 pos += 1;
             }
+
+            // Put the item in its right position
             if (item.value != arr[pos].value) {
                 std::swap(item, arr[pos]);
             }
         }
-
-        if (displaySteps) {
-            std::cout << "Step " << cycle_start << ": ";
-            print(arr, displaySteps); //Cycle Sort
-        }
     }
+
+    // Return the sorted array after completing all cycles
     return arr;
 }
+
+
