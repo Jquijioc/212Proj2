@@ -69,7 +69,8 @@ Other IDES may be used, however the code was originally written and tested with 
 13. If you want to use Analyze Sort:
     - a. Input 3 for 3. Analyze Sort.
     - b. Input an integer for the sorting algorithm you'd like to run.
-    - c. The program will display the original sequence, the sorted sequence, and the sequences with letter keys to check algorithm stability with duplicates in datasets.
+    - c. Input an integer for whether you would like to test time or check stability.
+    - c. The program will display the original sequence and the sorted sequence with time benchmarks or the sequence before and after sorting with letter keys to check stability depending on your choice.
 14. If you want to use Display Sort:
     - a. Input 4 for 4. Display Sort.
     - b. Select the data type you want to sort: sorted, reversed, randomized, and partially sorted.
