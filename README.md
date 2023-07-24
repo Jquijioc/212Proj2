@@ -78,9 +78,8 @@ Other IDES may be used, however the code was originally written and tested with 
     - d. The program will display the original sequence, each intermediate step of the sorting algorithm sequence as it sorts, and the final sorted sequence.
 15. If you ever want to quit, you can input 0 for 0. Quit. If you want to backstep in the menu, you can input 5 for 5. Back. to go back.
 
-# benchmark results 
+# Benchmark Results 
 ![](https://github.com/Jquijioc/212Proj2/blob/main/Screenshot%202023-07-24%20at%205.14.45%20PM.png?raw=true)
-
 
 # Pseudocode
 
