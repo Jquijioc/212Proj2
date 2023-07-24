@@ -146,6 +146,10 @@ void Sort::inputMenu() {
     for (int i = 0; i < size; i++) {
         int num;
         std::cin >> num;
+        if (std::cin.fail()) { //Catch to prevent an infinite loop if something like "1a" accidentally entered...
+            std::cout << "Input not an integer. Closing..." << std::endl;
+            break;
+        }
         KeyedInt temp = {num, std::string(1, 'a' + i)}; // Assign keys as 'a', 'b', 'c', ...
         customData.push_back(temp);
     }
