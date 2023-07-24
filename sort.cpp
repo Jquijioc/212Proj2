@@ -266,6 +266,7 @@ void Sort::fileMenu() {
     this->partial = sequence[3];
 }
 
+//A method to write the program's stored data sets to a text file.
 void Sort::outputFile(const std::string& file_name) {
     std::ofstream outputFile(file_name + ".txt");
 
@@ -433,7 +434,7 @@ void Sort::print(std::vector<KeyedInt> dataSet, bool displaySteps) {
     }
 }
 
-// A helper method to check if the sorting algorithm maintains stability.
+//A helper method to check if the sorting algorithm maintains stability.
 bool Sort::checkStable(const std::vector<KeyedInt>& dataSet) {
     for (int i = 1; i < dataSet.size(); i++) {
         if (dataSet[i].value == dataSet[i - 1].value) {
