@@ -180,10 +180,10 @@ void Sort::inputMenu() {
 
 //A method to allow for a custom new file selection for datasets while the program is running.
 void Sort::fileMenu() {
-    std::cout << "Enter the name of the text file to read data from: ";
+    std::cout << "Enter the name of the .txt file to read data from: ";
     std::string file_name;
     getline(std::cin, file_name);
-    std::ifstream file(file_name);
+    std::ifstream file(file_name + ".txt");
 
     if (!file) {
         std::cout << "Error: Unable to open the file " << file_name << std::endl;
@@ -275,11 +275,11 @@ void Sort::analyzeSort(int alg) {
         auto start = std::chrono::high_resolution_clock::now();
         std::vector<KeyedInt> dataSet = dataSets[i];
         std::string description = descriptions[i];
+        name = "Insertion Sort";
+        std::cout << "Before " << name << " of " << description << " List" << std::endl;
+        print(dataSet, false);
         switch (alg) {
             case 1:
-                name = "Insertion Sort";
-                std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(dataSet, false);
                 dataSet = insertionSort(dataSet, false);
                 break;
             case 2:
