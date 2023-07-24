@@ -22,12 +22,13 @@ public:
     //Menu methods.
     void mainMenu();
     void analyzeMenu();
+    void benchmarkMenu(int sort_type);
     void displayMenu();
     void inputMenu(); //The user can input custom data to test against sorting algorithms.
     void fileMenu(); //The user can input a file name to select as their custom data.
     void outputFile(const std::string& file_name);
     //Display/analysis methods.
-    void analyzeSort(int alg);
+    void analyzeSort(int alg, bool key);
     void displaySort(int alg, int sort_type);
     void print(std::vector<KeyedInt> dataSet, bool displaySteps);
     //Sorting methods with their helper methods.
