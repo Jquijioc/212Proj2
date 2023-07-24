@@ -2,19 +2,23 @@
 Project Members: Summer Lizarda, Jonathan Ok, Amer al Sayari
 
 ## Summary of the Project
+
+The premise of this project was to implement a C++ application capable of running and analyzing several sorting algorithms. The application can benchmark different sorting algorithms by runtime at a granular scale, check different algorithms' stability via a character key structure, demonstrate the step-by-step processes of sorting algorithms, and read in and output custom user data sequences as text files.
+
+The application can read in up to a four-line text file made up of datasets in the order of fully sorted, reversed, randomly sorted, and partially sorted. The user can choose from a console output menu whether to produce a custom dataset and write it to a file or read in an outside file, which we've provided. The user can interact with the menu from there to step through an algorithm or benchmark it with the dataset.
+
+The project required our program to implement the following sorting algorithms and a custom algorithm, which are as follows:
+
 ```
-**Sorting Algorithms**
-^^^
-
-**_Implement the following algorithms_**
-
 - `insertion sort`
 - `mergesort`
 - `quicksort`
-- 1 additional algorithm not present in class
+- `cyclesort
+```
 
-**_Benchmark all algorithms recording their runtime_**
+The project required our program to benchmark the algorithms on several different sequence types, which are as follows:
 
+```
 - use different sequence sizes
 - use different types of sequences:
   - sorted, reversed, random, partially sorted
