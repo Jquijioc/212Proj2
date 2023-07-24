@@ -389,23 +389,23 @@ void Sort::displaySort(int alg, int sort_type) {
             std::vector<KeyedInt> dataSet = dataSets[alg-1];
             std::string description = descriptions[alg-1];
             std::cout << "Original ";
-            print(dataSet, true);
+            print(dataSet, false);
             switch (sortMethod) {
                 case 1:
-                    dataSet = insertionSort(dataSet, false);
+                    dataSet = insertionSort(dataSet, true);
                     break;
                 case 2:
-                    quickSort(dataSet, 0, dataSet.size() - 1, false);
+                    quickSort(dataSet, 0, dataSet.size() - 1, true);
                     break;
                 case 3:
-                    dataSet = mergeSort(dataSet, false);
+                    dataSet = mergeSort(dataSet, true);
                     break;
                 case 4:
                     if(dataSet.size() < 2){
                         std::cout << "Cannot execute cycle sort with dataset under size 2. Closing.." << std::endl;
                         return;
                     } else {
-                        dataSet = cycleSort(dataSet, false);
+                        dataSet = cycleSort(dataSet, true);
                     }
                     break;
             }
@@ -460,7 +460,7 @@ std::vector<KeyedInt> Sort::insertionSort(std::vector<KeyedInt> arr, bool displa
 
         if (displaySteps) {
             std::cout << "Step " << i << ": ";
-            print(arr, displaySteps); //Insertion Sort
+            print(arr, false); //Insertion Sort
         }
     }
     return arr;
@@ -473,10 +473,9 @@ void Sort::quickSort(std::vector<KeyedInt>& arr, int low, int high, bool display
         quickSort(arr, low, pivot - 1, displaySteps);
         if (displaySteps) {
             std::cout << "Pivot Point " << pivot << ": Pivot Value: " << arr[pivot].value << " : ";
-            print(arr, displaySteps); //Quick Sort
+            print(arr, false); //Quick Sort
         }
-
-        quickSort(arr, pivot + 1, high, displaySteps);
+        quickSort(arr, pivot + 1, high, false);
     }
 }
 
@@ -510,13 +509,13 @@ std::vector<KeyedInt> Sort::mergeSort(std::vector<KeyedInt> arr, bool displaySte
 
         if (displaySteps) {
             std::cout << "Left: ";
-            print(left, displaySteps); //Merge Sort
+            print(left, false); //Merge Sort
 
             std::cout << "Right: ";
-            print(right, displaySteps);
+            print(right, false);
 
             std::cout << "Merged: ";
-            print(arr, displaySteps);
+            print(arr, false);
         }
     }
     return arr;
@@ -551,7 +550,7 @@ std::vector<KeyedInt> Sort::cycleSort(std::vector<KeyedInt> arr, bool displaySte
         // If displaySteps is true, print the array before starting each cycle for visualization
         if (displaySteps) {
             std::cout << "Step " << cycle_start << ": ";
-            print(arr, displaySteps); // Cycle Sort
+            print(arr, false); // Cycle Sort
         }
 
         // Select the current item to be placed in its correct position
