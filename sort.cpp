@@ -150,6 +150,11 @@ void Sort::inputMenu() {
     std::cout << "Enter the size of the custom dataset: ";
     std::cin >> this->size;
 
+    if (std::cin.fail()) { //Catch to prevent an infinite loop if something like "1a" accidentally entered...
+        std::cout << "Input not an integer. Closing..." << std::endl;
+        abort();
+    }
+
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Enter " << size << " space-separated integers for a custom dataset: ";
@@ -199,13 +204,13 @@ void Sort::inputMenu() {
 
     // Display the datasets.
     std::cout << "Sorted: ";
-    print(sorted, true);
+    print(sorted, false);
     std::cout << "Reversed: ";
-    print(reversed, true);
+    print(reversed, false);
     std::cout << "Random: ";
-    print(random, true);
+    print(random, false);
     std::cout << "Partial: ";
-    print(partial, true);
+    print(partial, false);
 
     // Ask if the user wants to output the datasets to a file.
     std::cout << "Do you want to output the datasets to a .txt file? (Y/N): ";
