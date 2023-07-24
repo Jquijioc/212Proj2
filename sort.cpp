@@ -30,7 +30,19 @@ Sort::Sort(int size, std::vector<KeyedInt> sorted, std::vector<KeyedInt> reverse
 void Sort::mainMenu() {
     std::string input;
     while (true) {
-        std::cout << "Input an integer:\n";
+        std::cout << "Current datasets:\n";
+        std::cout << "Sorted ";
+        print(sorted, false);
+        std::cout << "Reversed ";
+        print(reversed, false);
+        std::cout << "Random ";
+        print(random, false);
+        std::cout << "Partial ";
+        print(partial, false);
+
+        std::cout << std::endl;
+
+        std::cout << "Input data:\n";
         std::cout << "1. Input custom data.\n";
         std::cout << "2. Input file data.\n";
         std::cout << "3. Analyze sort.\n";
@@ -247,15 +259,6 @@ void Sort::fileMenu() {
     this->reversed = sequence[1];
     this->random = sequence[2];
     this->partial = sequence[3];
-
-    std::cout << "Sorted ";
-    print(sorted, true);
-    std::cout << "Reversed ";
-    print(reversed, true);
-    std::cout << "Random ";
-    print(random, true);
-    std::cout << "Partial ";
-    print(partial, true);
 }
 
 void Sort::outputFile(const std::string& file_name) {
@@ -341,8 +344,14 @@ void Sort::analyzeSort(int alg, bool key) {
 
         std::cout << "After " << name << " of " << description << " List" << std::endl;
         print(dataSet, key);
-        if(!key){
+        if (!key) {
             std::cout << "Time to sort: " << elapsed.count() << " seconds" << std::endl;
+        } else {
+            if (checkStable(dataSet)) {
+                std::cout << "Sort: Stable." << std::endl;
+            } else {
+                std::cout << "Sort: Unstable." << std::endl;
+            }
         }
         std::cout << std::endl;
     }
@@ -377,19 +386,20 @@ void Sort::displaySort(int alg, int sort_type) {
             print(dataSet, true);
             switch (sortMethod) {
                 case 1:
-                    dataSet = insertionSort(dataSet, true);
+                    dataSet = insertionSort(dataSet, false);
                     break;
                 case 2:
-                    quickSort(dataSet, 0, dataSet.size() - 1, true);
+                    quickSort(dataSet, 0, dataSet.size() - 1, false);
                     break;
                 case 3:
-                    dataSet = mergeSort(dataSet, true);
+                    dataSet = mergeSort(dataSet, false);
                     break;
                 case 4:
                     if(dataSet.size() < 2){
-                        std::cout << "Cannot execute Cycle Sort with dataset of size " << dataSet.size() << ". Closing.." << std::endl;
+                        std::cout << "Cannot execute cycle sort with dataset under size 2. Closing.." << std::endl;
+                        return;
                     } else {
-                        dataSet = cycleSort(dataSet, true);
+                        dataSet = cycleSort(dataSet, false);
                     }
                     break;
             }
@@ -416,6 +426,19 @@ void Sort::print(std::vector<KeyedInt> dataSet, bool displaySteps) {
         }
         std::cout << std::endl;
     }
+}
+
+// A helper method to check if the sorting algorithm maintains stability.
+bool Sort::checkStable(const std::vector<KeyedInt>& dataSet) {
+    for (int i = 1; i < dataSet.size(); i++) {
+        if (dataSet[i].value == dataSet[i - 1].value) {
+            // If the values are equal, compare the keys.
+            if (dataSet[i].key < dataSet[i - 1].key) {
+                return false; // Unstable
+            }
+        }
+    }
+    return true; // Stable
 }
 
 //A basic insertion sort implementation.
