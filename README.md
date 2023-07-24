@@ -54,27 +54,27 @@ Other IDES may be used, however the code was originally written and tested with 
 3. Enter the CLA command provided into your console.
 4. Before you operate, you must select a dataset of sequences. You may create your own data set or use one of our data sets provided, please follow instructions closely.
 5. If you want to use a specific custom data set, i.e. the ones we've provided or a custom-made one:
-   a. Create a four-line text file.
-   b. Label each line with [Sorted, Reversed, Random, Partial] in that order.
-   c. Input your integers on each line sorted, reversed, randomized, and partially sorted separated by single white spaces.
-   d. In the program main menu, input 2 for 2. Input File Data.
-   e. Enter the name of your .txt file.
-   f. The program will read in and display the file contents, saving the datasets.
+   5a. Create a four-line text file.
+   5b. Label each line with [Sorted, Reversed, Random, Partial] in that order.
+   5c. Input your integers on each line sorted, reversed, randomized, and partially sorted separated by single white spaces.
+   5d. In the program main menu, input 2 for 2. Input File Data.
+   5e. Enter the name of your .txt file.
+   5f. The program will read in and display the file contents, saving the datasets.
 7. If you want to create a program-made custom data set:
-   a. In the program main menu, input 1 for 1. Input custom data.
-   b. Input the size of your desired data set.
-   3. Input your integers in any order up to the size you set.
-   4. The program will fully sort, reverse, randomly sort, and partially sort your data and display it for you, saving the datasets.  
+   7a. In the program main menu, input 1 for 1. Input custom data.
+   7b. Input the size of your desired data set.
+   7c. Input your integers in any order up to the size you set.
+   7d. The program will fully sort, reverse, randomly sort, and partially sort your data and display it for you, saving the datasets.  
 12. You may now use our Analyze Sort and Display Sort feature.
 13. If you want to use Analyze Sort:
-   a. Input 3 for 3. Analyze Sort.
-   b. Input an integer for the sorting algorithm you'd like to run.
-   c. The program will display the original sequence, the sorted sequence, and the sequences with letter keys to check algorithm stability with duplicates in datasets.
+   13a. Input 3 for 3. Analyze Sort.
+   13b. Input an integer for the sorting algorithm you'd like to run.
+   13c. The program will display the original sequence, the sorted sequence, and the sequences with letter keys to check algorithm stability with duplicates in datasets.
 14. If you want to use Display Sort:
-   a. Input 4 for 4. Display Sort.
-   b. Select the data type you want to sort: sorted, reversed, randomized, and partially sorted.
-   c. Select the sorting algorithm you want to run on the data type: insertion sort, quick sort, merge sort, and cycle sort.
-   d The program will display the original sequence, each intermediate step of the sorting algorithm sequence as it sorts, and the final sorted sequence.
+   14a. Input 4 for 4. Display Sort.
+   14b. Select the data type you want to sort: sorted, reversed, randomized, and partially sorted.
+   14c. Select the sorting algorithm you want to run on the data type: insertion sort, quick sort, merge sort, and cycle sort.
+   14d. The program will display the original sequence, each intermediate step of the sorting algorithm sequence as it sorts, and the final sorted sequence.
 15. If you ever want to quit, you can input 0. Quit. If you want to backstep in the menu, you can input 5. Back. to go back.
 
 # Pseudocode
