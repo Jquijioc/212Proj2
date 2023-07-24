@@ -67,14 +67,14 @@ Other IDES may be used, however the code was originally written and tested with 
    - d. The program will fully sort, reverse, randomly sort, and partially sort your data and display it for you, saving the datasets.  
 12. You may now use our Analyze Sort and Display Sort feature.
 13. If you want to use Analyze Sort:
-   - a. Input 3 for 3. Analyze Sort.
-   - b. Input an integer for the sorting algorithm you'd like to run.
-   - c. The program will display the original sequence, the sorted sequence, and the sequences with letter keys to check algorithm stability with duplicates in datasets.
+    - a. Input 3 for 3. Analyze Sort.
+    - b. Input an integer for the sorting algorithm you'd like to run.
+    - c. The program will display the original sequence, the sorted sequence, and the sequences with letter keys to check algorithm stability with duplicates in datasets.
 14. If you want to use Display Sort:
-   - a. Input 4 for 4. Display Sort.
-   - b. Select the data type you want to sort: sorted, reversed, randomized, and partially sorted.
-   - c. Select the sorting algorithm you want to run on the data type: insertion sort, quick sort, merge sort, and cycle sort.
-   - d. The program will display the original sequence, each intermediate step of the sorting algorithm sequence as it sorts, and the final sorted sequence.
+    - a. Input 4 for 4. Display Sort.
+    - b. Select the data type you want to sort: sorted, reversed, randomized, and partially sorted.
+    - c. Select the sorting algorithm you want to run on the data type: insertion sort, quick sort, merge sort, and cycle sort.
+    - d. The program will display the original sequence, each intermediate step of the sorting algorithm sequence as it sorts, and the final sorted sequence.
 15. If you ever want to quit, you can input 0. Quit. If you want to backstep in the menu, you can input 5. Back. to go back.
 
 # Pseudocode
