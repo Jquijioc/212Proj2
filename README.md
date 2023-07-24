@@ -24,31 +24,19 @@ The project required our program to benchmark the algorithms on several differen
   - sorted, reversed, random, partially sorted
 ```
 
-# Runtime Instructions
+# Instructions on Input & Compilation
 
-Other IDES may be used, however the code was originally written and tested with CLion.
+## File Structure
 
-The program should be run as per these steps:
-1. Download the files sort.h, sort.cpp, main.cpp from our Github repository.
-2. Open your preferred IDE.
-3. Use the following CLA command provided.
-4. You may create your own data set or use one of our data sets provided, please follow instructions closely.
-5. If you are using our data sets, skip to step 8.
-6. If you did not create your own data set or don't want to use ours, please select "Input custom data".
-7. Select y to output your created data set to .txt file.
-8. Select the option "Input file data".
-9. Enter the name of the .txt file.
-10. You may now use our Analyze Sort and Display Sort feature.
-
-NOTE: To open your own data set, it must be created in a .txt file and follow the format below:
+Our program benchmarks sorting algorithms with four different sequence types: fully sorted, reversed, randomly sorted, and partially sorted. The user can choose to input their own dataset of a custom size into the program for it to sort, reverse, randomize, and partially sort automatically, or the user can write a file themself for the program to read in. The program accepts a four-line text file as such, with each line beginning with the sequence type and input in the order:
 
 ```
-Sorted 1 2 3 4 5 6 7 8 9 10
-Reversed 10 9 8 7 6 5 4 3 2 1
-Random 7 3 10 8 2 1 5 9 4 6
-Partial 1 2 3 4 5 10 8 7 9 6
-
+Sorted 1 2 3 4 5 6 7 8 9 10 
+Reversed 10 9 8 7 6 5 4 3 2 1 
+Random 9 2 10 3 1 6 8 4 5 7 
+Partial 1 2 3 4 5 10 8 9 7 6 
 ```
+
 ## Command Line Arguments
 
 The program's command line execution follow the form of:
@@ -56,6 +44,38 @@ The program's command line execution follow the form of:
 ```
 g++ sort.cpp main.cpp -o test && ./test
 ```
+
+## Runtime Instructions
+
+Other IDES may be used, however the code was originally written and tested with CLion. The program can be run and operated per these steps:
+
+1. Download the files sort.h, sort.cpp, main.cpp from our Github repository.
+2. Open your preferred IDE.
+3. Enter the CLA command provided into your console.
+4. Before you operate, you must select a dataset of sequences. You may create your own data set or use one of our data sets provided, please follow instructions closely.
+5. If you want to use a specific custom data set, i.e. the ones we've provided or a custom-made one:
+   a. Create a four-line text file.
+   b. Label each line with [Sorted, Reversed, Random, Partial] in that order.
+   c. Input your integers on each line sorted, reversed, randomized, and partially sorted separated by single white spaces.
+   d. In the program main menu, input 2 for 2. Input File Data.
+   e. Enter the name of your .txt file.
+   f. The program will read in and display the file contents, saving the datasets.
+7. If you want to create a program-made custom data set:
+   a. In the program main menu, input 1 for 1. Input custom data.
+   b. Input the size of your desired data set.
+   3. Input your integers in any order up to the size you set.
+   4. The program will fully sort, reverse, randomly sort, and partially sort your data and display it for you, saving the datasets.  
+12. You may now use our Analyze Sort and Display Sort feature.
+13. If you want to use Analyze Sort:
+   a. Input 3 for 3. Analyze Sort.
+   b. Input an integer for the sorting algorithm you'd like to run.
+   c. The program will display the original sequence, the sorted sequence, and the sequences with letter keys to check algorithm stability with duplicates in datasets.
+14. If you want to use Display Sort:
+   a. Input 4 for 4. Display Sort.
+   b. Select the data type you want to sort: sorted, reversed, randomized, and partially sorted.
+   c. Select the sorting algorithm you want to run on the data type: insertion sort, quick sort, merge sort, and cycle sort.
+   d The program will display the original sequence, each intermediate step of the sorting algorithm sequence as it sorts, and the final sorted sequence.
+15. If you ever want to quit, you can input 0. Quit. If you want to backstep in the menu, you can input 5. Back. to go back.
 
 # Pseudocode
 
