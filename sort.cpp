@@ -59,7 +59,7 @@ void Sort::mainMenu() {
 void Sort::analyzeMenu() {
     std::string input;
     while(true) {
-        std::cout << "Input an integer to sort via algorithm:" << std::endl;
+        std::cout << "Input an algorithm to benchmark:" << std::endl;
         std::cout << "1: Insertion Sort" << std::endl;
         std::cout << "2: Quick Sort" << std::endl;
         std::cout << "3: Merge Sort" << std::endl;
@@ -74,8 +74,33 @@ void Sort::analyzeMenu() {
         } else if (input == "5"){
             break;
         } else if (input == "1" || input == "2" || input == "3" || input == "4") {
-            int sortMethod = std::stoi(input);
-            analyzeSort(sortMethod);
+            int sort_type = std::stoi(input);
+            benchmarkMenu(sort_type);
+        } else {
+            std::cout << "Unrecognized command: " << input << std::endl;
+        }
+    }
+}
+
+//A method to display the analysis menu for benchmarking and stability testing of sorting algorithms.
+void Sort::benchmarkMenu(int sort_type) {
+    std::string input;
+    while(true) {
+        std::cout << "Select a benchmark:" << std::endl;
+        std::cout << "1: Check sort time." << std::endl;
+        std::cout << "2: Check stability." << std::endl;
+        std::cout << "3: Back" << std::endl;
+        std::cout << "0: Quit" << std::endl;
+        std::cout << std::endl;
+        getline(std::cin, input);
+        if (input == "0") {
+            abort();
+        } else if (input == "3"){
+            break;
+        } else if (input == "1") {
+            analyzeSort(sort_type, false);
+        } else if (input == "2") {
+            analyzeSort(sort_type, true);
         } else {
             std::cout << "Unrecognized command: " << input << std::endl;
         }
@@ -266,7 +291,7 @@ void Sort::outputFile(const std::string& file_name) {
 }
 
 //A method that uses the chrono library for granular time outputs along with key displays for stability to benchmark sorting algorithms.
-void Sort::analyzeSort(int alg) {
+void Sort::analyzeSort(int alg, bool key) {
     std::vector<std::vector<KeyedInt>> dataSets = {this->sorted, this->reversed, this->random, this->partial};
     std::vector<std::string> descriptions = {"Sorted", "Reversed", "Random", "Partial"};
     std::string name;
@@ -279,19 +304,19 @@ void Sort::analyzeSort(int alg) {
             case 1:
                 name = "Insertion Sort";
                 std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(dataSet, false);
+                print(dataSet, key);
                 dataSet = insertionSort(dataSet, false);
                 break;
             case 2:
                 name = "Quick Sort";
                 std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(dataSet, false);
+                print(dataSet, key);
                 quickSort(dataSet, 0, dataSet.size() - 1, false);
                 break;
             case 3:
                 name = "Merge Sort";
                 std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(dataSet, false);
+                print(dataSet, key);
                 dataSet = mergeSort(dataSet, false);
                 break;
             case 4:
@@ -301,7 +326,7 @@ void Sort::analyzeSort(int alg) {
                 } else {
                     name = "Cycle Sort";
                     std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                    print(dataSet, false);
+                    print(dataSet, key);
                     dataSet = cycleSort(dataSet, false);
                     break;
                 }
@@ -311,8 +336,11 @@ void Sort::analyzeSort(int alg) {
         std::chrono::duration<double> elapsed = end - start;
 
         std::cout << "After " << name << " of " << description << " List" << std::endl;
-        print(dataSet, false);
-        std::cout << "Time to sort: " << elapsed.count() << " seconds" << std::endl << std::endl;
+        print(dataSet, key);
+        if(!key){
+            std::cout << "Time to sort: " << elapsed.count() << " seconds" << std::endl;
+        }
+        std::cout << std::endl;
     }
 }
 
@@ -369,17 +397,18 @@ void Sort::displaySort(int alg, int sort_type) {
 
 //The print method prints all the values of a dataset separated by white spaces (and if displaySteps is on, it prints keys as well).
 void Sort::print(std::vector<KeyedInt> dataSet, bool displaySteps) {
-    // Print the original values.
-    std::cout << "Value: ";
-    for (const auto& item : dataSet) {
-        std::cout << item.value << " ";
-    }
-    std::cout << std::endl;
-    if(!displaySteps){ //If the user is in the analysis mode, display steps is false and keys are printed along with values.
+    if(displaySteps){ //If the user is in the analysis mode, display steps is false and keys are printed along with values.
         // Print the keyed values.
         std::cout << "Key: ";
         for (const auto& item : dataSet) {
             std::cout << item.value << item.key << " ";
+        }
+        std::cout << std::endl;
+    } else {
+        // Print the original values.
+        std::cout << "Value: ";
+        for (const auto& item : dataSet) {
+            std::cout << item.value << " ";
         }
         std::cout << std::endl;
     }
