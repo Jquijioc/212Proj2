@@ -158,13 +158,13 @@ void Sort::inputMenu() {
 
     // Display the datasets.
     std::cout << "Sorted: ";
-    print(0, sorted, true);
+    print(sorted, true);
     std::cout << "Reversed: ";
-    print(0, reversed, true);
+    print(reversed, true);
     std::cout << "Random: ";
-    print(0, random, true);
+    print(random, true);
     std::cout << "Partial: ";
-    print(0, partial, true);
+    print(partial, true);
 
     // Ask if the user wants to output the datasets to a file.
     std::cout << "Do you want to output the datasets to a .txt file? (Y/N): ";
@@ -220,13 +220,13 @@ void Sort::fileMenu() {
     this->partial = sequence[3];
 
     std::cout << "Sorted ";
-    print(0, sorted, true);
+    print(sorted, true);
     std::cout << "Reversed ";
-    print(0, reversed, true);
+    print(reversed, true);
     std::cout << "Random ";
-    print(0, random, true);
+    print(random, true);
     std::cout << "Partial ";
-    print(0, partial, true);
+    print(partial, true);
 }
 
 void Sort::outputFile(const std::string& file_name) {
@@ -279,19 +279,19 @@ void Sort::analyzeSort(int alg) {
             case 1:
                 name = "Insertion Sort";
                 std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(alg, dataSet, false);
+                print(dataSet, false);
                 dataSet = insertionSort(dataSet, false);
                 break;
             case 2:
                 name = "Quick Sort";
                 std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(alg, dataSet, false);
+                print(dataSet, false);
                 quickSort(dataSet, 0, dataSet.size() - 1, false);
                 break;
             case 3:
                 name = "Merge Sort";
                 std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                print(alg, dataSet, false);
+                print(dataSet, false);
                 dataSet = mergeSort(dataSet, false);
                 break;
             case 4:
@@ -301,7 +301,7 @@ void Sort::analyzeSort(int alg) {
                 } else {
                     name = "Cycle Sort";
                     std::cout << "Before " << name << " of " << description << " List" << std::endl;
-                    print(alg, dataSet, false);
+                    print(dataSet, false);
                     dataSet = cycleSort(dataSet, false);
                     break;
                 }
@@ -311,7 +311,7 @@ void Sort::analyzeSort(int alg) {
         std::chrono::duration<double> elapsed = end - start;
 
         std::cout << "After " << name << " of " << description << " List" << std::endl;
-        print(alg, dataSet, false);
+        print(dataSet, false);
         std::cout << "Time to sort: " << elapsed.count() << " seconds" << std::endl << std::endl;
     }
 }
@@ -341,6 +341,8 @@ void Sort::displaySort(int alg, int sort_type) {
             int sortMethod = std::stoi(input);
             std::vector<KeyedInt> dataSet = dataSets[alg-1];
             std::string description = descriptions[alg-1];
+            std::cout << "Original ";
+            print(dataSet, true);
             switch (sortMethod) {
                 case 1:
                     dataSet = insertionSort(dataSet, true);
@@ -366,7 +368,7 @@ void Sort::displaySort(int alg, int sort_type) {
 }
 
 //The print method prints all the values of a dataset separated by white spaces (and if displaySteps is on, it prints keys as well).
-void Sort::print(int alg, std::vector<KeyedInt> dataSet, bool displaySteps) {
+void Sort::print(std::vector<KeyedInt> dataSet, bool displaySteps) {
     // Print the original values.
     std::cout << "Value: ";
     for (const auto& item : dataSet) {
@@ -396,7 +398,7 @@ std::vector<KeyedInt> Sort::insertionSort(std::vector<KeyedInt> arr, bool displa
 
         if (displaySteps) {
             std::cout << "Step " << i << ": ";
-            print(1, arr, displaySteps); //Insertion Sort
+            print(arr, displaySteps); //Insertion Sort
         }
     }
     return arr;
@@ -409,7 +411,7 @@ void Sort::quickSort(std::vector<KeyedInt>& arr, int low, int high, bool display
         quickSort(arr, low, pivot - 1, displaySteps);
         if (displaySteps) {
             std::cout << "Pivot Point " << pivot << ": Pivot Value: " << arr[pivot].value << " : ";
-            print(2, arr, displaySteps); //Quick Sort
+            print(arr, displaySteps); //Quick Sort
         }
 
         quickSort(arr, pivot + 1, high, displaySteps);
@@ -446,13 +448,13 @@ std::vector<KeyedInt> Sort::mergeSort(std::vector<KeyedInt> arr, bool displaySte
 
         if (displaySteps) {
             std::cout << "Left: ";
-            print(3, left, displaySteps); //Merge Sort
+            print(left, displaySteps); //Merge Sort
 
             std::cout << "Right: ";
-            print(3, right, displaySteps);
+            print(right, displaySteps);
 
             std::cout << "Merged: ";
-            print(3, arr, displaySteps);
+            print(arr, displaySteps);
         }
     }
     return arr;
@@ -518,7 +520,7 @@ std::vector<KeyedInt> Sort::cycleSort(std::vector<KeyedInt> arr, bool displaySte
 
         if (displaySteps) {
             std::cout << "Step " << cycle_start << ": ";
-            print(4, arr, displaySteps); //Cycle Sort
+            print(arr, displaySteps); //Cycle Sort
         }
     }
     return arr;
